@@ -90,6 +90,12 @@ public class Person implements Serializable {
 	
 	@Column(name="CHALLENGED",nullable=false)
 	private Challenged challenged;
+	
+	@Column(name="PRIMERYCONTACTNO",nullable=false)
+	private String primeryContactNo;
+	
+	@Column(name="SECOUNDRYCONTACTNO",nullable=true)
+	private String secoundryContactNo;
 
 	/**
 	 * @return the fName
@@ -385,6 +391,50 @@ public class Person implements Serializable {
 		this.challenged = challenged;
 	}
 
+	
+	
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the primeryContactNo
+	 */
+	public String getPrimeryContactNo() {
+		return primeryContactNo;
+	}
+
+	/**
+	 * @param primeryContactNo the primeryContactNo to set
+	 */
+	public void setPrimeryContactNo(String primeryContactNo) {
+		this.primeryContactNo = primeryContactNo;
+	}
+
+	/**
+	 * @return the secoundryContactNo
+	 */
+	public String getSecoundryContactNo() {
+		return secoundryContactNo;
+	}
+
+	/**
+	 * @param secoundryContactNo the secoundryContactNo to set
+	 */
+	public void setSecoundryContactNo(String secoundryContactNo) {
+		this.secoundryContactNo = secoundryContactNo;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -403,6 +453,7 @@ public class Person implements Serializable {
 		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
 		result = prime * result + ((gotraToSave == null) ? 0 : gotraToSave.hashCode());
 		result = prime * result + ((height == null) ? 0 : height.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + (int) (income ^ (income >>> 32));
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
 		result = prime * result + ((mName == null) ? 0 : mName.hashCode());
@@ -410,8 +461,10 @@ public class Person implements Serializable {
 		result = prime * result + noOfBrother;
 		result = prime * result + noOfSisters;
 		result = prime * result + ((placeOfBirth == null) ? 0 : placeOfBirth.hashCode());
+		result = prime * result + ((primeryContactNo == null) ? 0 : primeryContactNo.hashCode());
 		result = prime * result + ((qualification == null) ? 0 : qualification.hashCode());
 		result = prime * result + ((religion == null) ? 0 : religion.hashCode());
+		result = prime * result + ((secoundryContactNo == null) ? 0 : secoundryContactNo.hashCode());
 		result = prime * result + ((tob == null) ? 0 : tob.hashCode());
 		return result;
 	}
@@ -471,6 +524,8 @@ public class Person implements Serializable {
 				return false;
 		} else if (!height.equals(other.height))
 			return false;
+		if (id != other.id)
+			return false;
 		if (income != other.income)
 			return false;
 		if (lName == null) {
@@ -497,12 +552,22 @@ public class Person implements Serializable {
 				return false;
 		} else if (!placeOfBirth.equals(other.placeOfBirth))
 			return false;
+		if (primeryContactNo == null) {
+			if (other.primeryContactNo != null)
+				return false;
+		} else if (!primeryContactNo.equals(other.primeryContactNo))
+			return false;
 		if (qualification != other.qualification)
 			return false;
 		if (religion == null) {
 			if (other.religion != null)
 				return false;
 		} else if (!religion.equals(other.religion))
+			return false;
+		if (secoundryContactNo == null) {
+			if (other.secoundryContactNo != null)
+				return false;
+		} else if (!secoundryContactNo.equals(other.secoundryContactNo))
 			return false;
 		if (tob == null) {
 			if (other.tob != null)
@@ -517,12 +582,13 @@ public class Person implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Person [fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", dob=" + dob + ", tob=" + tob
-				+ ", placeOfBirth=" + placeOfBirth + ", qualification=" + qualification + ", religion=" + religion
-				+ ", cast=" + cast + ", gotra=" + gotra + ", gotraToSave=" + gotraToSave + ", nameOfCollage="
+		return "Person [id=" + id + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", dob=" + dob
+				+ ", tob=" + tob + ", placeOfBirth=" + placeOfBirth + ", qualification=" + qualification + ", religion="
+				+ religion + ", cast=" + cast + ", gotra=" + gotra + ", gotraToSave=" + gotraToSave + ", nameOfCollage="
 				+ nameOfCollage + ", income=" + income + ", familyIncome=" + familyIncome + ", city=" + city
 				+ ", noOfSisters=" + noOfSisters + ", noOfBrother=" + noOfBrother + ", height=" + height + ", bodyType="
-				+ bodyType + ", complexion=" + complexion + ", challenged=" + challenged + "]";
+				+ bodyType + ", complexion=" + complexion + ", challenged=" + challenged + ", primeryContactNo="
+				+ primeryContactNo + ", secoundryContactNo=" + secoundryContactNo + "]";
 	}
 	
 	
