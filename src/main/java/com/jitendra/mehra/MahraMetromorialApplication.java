@@ -1,4 +1,4 @@
-package com.jitendra.mehra.MahraMetromorial;
+package com.jitendra.mehra;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
