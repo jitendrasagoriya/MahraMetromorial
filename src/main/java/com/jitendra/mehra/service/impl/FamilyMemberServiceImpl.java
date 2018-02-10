@@ -2,6 +2,8 @@ package com.jitendra.mehra.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import com.jitendra.mehra.service.FamilyMemberService;
 
 @Service
 public class FamilyMemberServiceImpl implements FamilyMemberService {
+	
+	private final Logger logger = LoggerFactory.getLogger(FamilyMemberServiceImpl.class);
 	
 	@Autowired
 	private FamilyMemberRepository repository;
