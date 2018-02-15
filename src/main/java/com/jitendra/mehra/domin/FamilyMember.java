@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.jitendra.mehra.enums.Relation;
 
-@Entity(name="FAMILYMEMBER")
+@Entity
+@Table(name="FAMILYMEMBER")
 public class FamilyMember implements Serializable {
 	
 	/**

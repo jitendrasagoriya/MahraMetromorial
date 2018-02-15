@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.jitendra.mehra.controller.PersonController;
 import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.repository.PersonRepository;
+import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.PersonService;
 
 
@@ -35,5 +36,34 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public Person save(Person person) {
 		return personRepository.saveAndFlush(person);
+	}
+
+	@Override
+	public List<Person> getByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Person update(Person person) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(Long Id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean temporyHide(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Person> search(Search search) {		 
+		return personRepository.search(search);
 	}
 }

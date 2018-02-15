@@ -15,5 +15,7 @@ public interface FamilyMemberService {
 	public  FamilyMember getById(Long id);
 	
 	public List<FamilyMember> getByName(String name);
+	
+	public FamilyMember save(FamilyMember familyMember);
 
 }

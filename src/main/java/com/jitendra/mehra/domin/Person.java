@@ -9,13 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Challenged;
 import com.jitendra.mehra.enums.Complexion;
+import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
 
-@Entity(name="PERSON")
+@Entity
+@Table(name="PERSON")
 public class Person implements Serializable {
 
 	/**
@@ -96,6 +99,9 @@ public class Person implements Serializable {
 	
 	@Column(name="SECOUNDRYCONTACTNO",nullable=true)
 	private String secoundryContactNo;
+	
+	@Column(name="STATUS",nullable=true)
+	private PersonStatus personStatus;
 
 	/**
 	 * @return the fName
@@ -434,6 +440,24 @@ public class Person implements Serializable {
 	public void setSecoundryContactNo(String secoundryContactNo) {
 		this.secoundryContactNo = secoundryContactNo;
 	}
+	
+	
+	
+
+	/**
+	 * @return the personStatus
+	 */
+	public PersonStatus getPersonStatus() {
+		return personStatus;
+	}
+
+	/**
+	 * @param personStatus the personStatus to set
+	 */
+	public void setPersonStatus(PersonStatus personStatus) {
+		this.personStatus = personStatus;
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -460,6 +484,7 @@ public class Person implements Serializable {
 		result = prime * result + ((nameOfCollage == null) ? 0 : nameOfCollage.hashCode());
 		result = prime * result + noOfBrother;
 		result = prime * result + noOfSisters;
+		result = prime * result + ((personStatus == null) ? 0 : personStatus.hashCode());
 		result = prime * result + ((placeOfBirth == null) ? 0 : placeOfBirth.hashCode());
 		result = prime * result + ((primeryContactNo == null) ? 0 : primeryContactNo.hashCode());
 		result = prime * result + ((qualification == null) ? 0 : qualification.hashCode());
@@ -547,6 +572,8 @@ public class Person implements Serializable {
 			return false;
 		if (noOfSisters != other.noOfSisters)
 			return false;
+		if (personStatus != other.personStatus)
+			return false;
 		if (placeOfBirth == null) {
 			if (other.placeOfBirth != null)
 				return false;
@@ -588,7 +615,8 @@ public class Person implements Serializable {
 				+ nameOfCollage + ", income=" + income + ", familyIncome=" + familyIncome + ", city=" + city
 				+ ", noOfSisters=" + noOfSisters + ", noOfBrother=" + noOfBrother + ", height=" + height + ", bodyType="
 				+ bodyType + ", complexion=" + complexion + ", challenged=" + challenged + ", primeryContactNo="
-				+ primeryContactNo + ", secoundryContactNo=" + secoundryContactNo + "]";
+				+ primeryContactNo + ", secoundryContactNo=" + secoundryContactNo + ", personStatus=" + personStatus
+				+ "]";
 	}
 	
 	

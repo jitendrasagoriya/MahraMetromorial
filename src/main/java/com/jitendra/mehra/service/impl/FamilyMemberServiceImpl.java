@@ -34,4 +34,9 @@ public class FamilyMemberServiceImpl implements FamilyMemberService {
 		return repository.getByName(name);
 	}
 
+	@Override
+	public FamilyMember save(FamilyMember familyMember) {
+		return repository.save(familyMember);
+	}
+
 }
