@@ -27,7 +27,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	/**
 	 * @Query("SELECT p FROM Person p WHERE p.age BETWEEN :search. AND :ageEnd AND p.qualification IN (:qualification) "
 			+ "AND p.gotra IN (:gotra) p.income BETWEEN :incomeStart AND :incomeEnd AND p.city IN (:city) "
-			+ "AND p.bodyTypes IN (:bodyTypes) AND p.complexions IN( :complexions) AND p.height BETWEEN :heightStart "
+			+ "AND p.bodyType IN (:bodyTypes) AND p.complexions IN( :complexions) AND p.height BETWEEN :heightStart "
 			+ "AND :heightEnd;")
 	 * */
 
