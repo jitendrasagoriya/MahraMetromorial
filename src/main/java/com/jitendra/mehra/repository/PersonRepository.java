@@ -1,34 +1,30 @@
 package com.jitendra.mehra.repository;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jitendra.mehra.domin.Person;
-import com.jitendra.mehra.search.Search;
+import com.jitendra.mehra.enums.PersonStatus;
 
 
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long>  {
 	
 	
 	@Query("SELECT p FROM Person p WHERE p.fName = :name")
-	public List<Person> getByFirstName(@Param("name") String name);
+	public Page<Person> getByFirstName(@Param("name") String name,Pageable pageable);
 	
 	@Query("SELECT p FROM Person p WHERE p.lName = :name")
-	public List<Person> getByLastName(@Param("name") String name);
- 
+	public Page<Person> getByLastName(@Param("name") String name,Pageable pageable);
 	
-	@Query(value = "SELECT p FROM Person p WHERE p.income BETWEEN :#{search.income.start} AND :#{search.income.end}" )
-	public List<Person> search(@Param("search") Search search);
-	
-	
-	/**
-	 * @Query("SELECT p FROM Person p WHERE p.age BETWEEN :search. AND :ageEnd AND p.qualification IN (:qualification) "
-			+ "AND p.gotra IN (:gotra) p.income BETWEEN :incomeStart AND :incomeEnd AND p.city IN (:city) "
-			+ "AND p.bodyType IN (:bodyTypes) AND p.complexions IN( :complexions) AND p.height BETWEEN :heightStart "
-			+ "AND :heightEnd;")
-	 * */
+	@Transactional
+	@Modifying
+	@Query("UPDATE  Person p SET p.personStatus = :status WHERE p.id = :id")
+	public int hide(@Param("id") Long id,@Param("status") PersonStatus status);
+	 
 
 }

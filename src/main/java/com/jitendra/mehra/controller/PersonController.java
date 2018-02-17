@@ -7,8 +7,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Complexion;
+import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
 import com.jitendra.mehra.search.Age;
 import com.jitendra.mehra.search.Height;
@@ -35,9 +40,9 @@ public class PersonController {
 	private PersonService personService;
 	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public ResponseEntity<List<Person>>  getAll(){
+	public Page<Person>  getAll(Pageable pageable){
 		logger.info("getAll : {}");
-		return new ResponseEntity<List<Person>>(personService.get(), HttpStatus.OK)  ;
+		return  personService.get(pageable) ;
 	}
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
@@ -53,9 +58,36 @@ public class PersonController {
 	}
 	
 	@RequestMapping(path = "/search", method = RequestMethod.POST)
-	public ResponseEntity<List<Person>> search(@RequestBody Search search ){	
+	public ResponseEntity<Page<Person>> search(@RequestBody Search search,Pageable pageable ){	
 		logger.info("search : {}", search);
-		return new ResponseEntity<List<Person>>(  personService.search(search),HttpStatus.OK);		
+		List<Person> persons = personService.search(search);
+		Page<Person> pages = new PageImpl<Person>(persons, pageable, persons.size());		 
+		return new ResponseEntity<Page<Person>>( pages ,HttpStatus.OK);		
+	}
+	
+	@RequestMapping(path = "/" , method = RequestMethod.PUT)
+	public ResponseEntity<Person> update(@RequestBody Person person){
+		logger.info("update :  person : {}", person);
+		return new ResponseEntity< Person>( personService.update(person) ,HttpStatus.OK);
+	}
+	
+	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Boolean> delete(@PathVariable(name="id") long id){
+		try {
+			personService.delete(id);
+			return new ResponseEntity< Boolean>( true ,HttpStatus.OK);
+		} catch (IllegalArgumentException illegalArgumentException ) {
+			return new ResponseEntity< Boolean>( false ,HttpStatus.OK);
+		}
+		
+	}
+	
+	@Transactional
+	@RequestMapping(path = "/Status/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> hide(@PathVariable(name="id") long id){
+		int i = personService.temporyHide(id, PersonStatus.HIDE);
+		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);
+		
 	}
 
 	

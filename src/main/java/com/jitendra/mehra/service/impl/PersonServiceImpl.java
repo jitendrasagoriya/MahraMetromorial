@@ -3,16 +3,19 @@ package com.jitendra.mehra.service.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Parameter;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jitendra.mehra.domin.Person;
+import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.repository.PersonRepository;
 import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.PersonService;
@@ -30,10 +33,7 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	private PersonRepository personRepository;
 
-	@Override
-	public List<Person> get() {		
-		return personRepository.findAll();
-	}
+	
 
 	@Override
 	public Person getById(long id) {
@@ -46,34 +46,24 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public List<Person> getByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Person update(Person person) {
-		// TODO Auto-generated method stub
-		return null;
+		return personRepository.save(person);
 	}
 
 	@Override
-	public boolean delete(Long Id) {
-		// TODO Auto-generated method stub
-		return false;
+	public void delete(Long id) throws IllegalArgumentException  {
+		personRepository.delete(id);
 	}
 
+	@Transactional
 	@Override
-	public boolean temporyHide(Long id) {
-		// TODO Auto-generated method stub
-		return false;
+	public int temporyHide(Long id,PersonStatus status) {
+		return personRepository.hide(id, status);
 	}
 
+	@SuppressWarnings({ "unused" })
 	@Override
 	public List<Person> search(Search search) {
-		
-		
-		
 		 
 		String withOutCityAndGotra  = "SELECT p FROM Person p WHERE (p.dob BETWEEN :ageStart AND :ageEnd) AND p.qualification IN (:qualification) "
 				+ "AND (p.income BETWEEN :incomeStart AND :incomeEnd) "
@@ -103,9 +93,9 @@ public class PersonServiceImpl implements PersonService {
 			queryString.append("  )");
 		}
 		
-		 
+		TypedQuery<Person> query = em.createQuery( queryString.toString() , Person.class) ;
 		
-		TypedQuery<Person> query = em.createQuery( queryString.toString() , Person.class);
+		 
 		
 		
 		logger.info("ageStart :{}", DateUtility.decreaseYearsInCurrentDate( new Integer( search.getAge().getStart() ) ) );
@@ -145,40 +135,27 @@ public class PersonServiceImpl implements PersonService {
 		query.setParameter("complexions",  search.getComplexions() );
 		query.setParameter("heightStart",  search.getHeight().getStart()  );
 		query.setParameter("heightEnd",  search.getHeight().getEnd()  );
-		 
-		for (Parameter parameter : query.getParameters()) {
-			System.out.println(parameter.getName() + " : "+ parameter.getParameterType() + " : "+ query.getParameterValue(parameter.getName()));
-		}
-		return query.getResultList();
+		
+		List<Person> persons = query.getResultList();		
+		return   persons;
 	}
-	
-	
-	public List<Person> search1(Search search) {
-		
-		
-		
-		 
-		String withOutCityAndGotra  = "SELECT p FROM Person p WHERE  p.bodyType IN (:bodyTypes)";
-		 
-		 
-		
-		TypedQuery<Person> query = em.createQuery( withOutCityAndGotra  , Person.class);
-		
-		
-		 
-		logger.info("bodyTypes :{}",  search.getBodyTypes() );
-		 
-		
-		 
-		query.setParameter("bodyTypes",  search.getBodyTypes() );
-		 
-		for (Parameter parameter : query.getParameters()) {
-			System.out.println(parameter.getName() + " : "+ parameter.getParameterType() + " : "+ query.getParameterValue(parameter.getName()));
-		}
-		return query.getResultList();
-	}
-	
 
-	
+	@Override
+	public Page<Person> get(Pageable pageable) {
+		return personRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Person> getByFirstName(String name, Pageable pageable) {
+		 return personRepository.getByFirstName(name, pageable);
+	}
+
+	@Override
+	public Page<Person> getByLastName(String name, Pageable pageable) {
+		 return personRepository.getByLastName(name, pageable);
+	}
+
+	 
+
 	
 }

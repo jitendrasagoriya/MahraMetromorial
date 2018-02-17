@@ -2,7 +2,6 @@ package com.jitendra.mehra.domin;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -102,6 +101,9 @@ public class Person implements Serializable {
 	
 	@Column(name="STATUS",nullable=true)
 	private PersonStatus personStatus;
+	
+	@Column(name="PROFILEPIC",nullable=true)
+	private String profilePic;
 
 	/**
 	 * @return the fName
@@ -459,6 +461,22 @@ public class Person implements Serializable {
 	}
 	
 
+	/**
+	 * @return the profilePic
+	 */
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	/**
+	 * @param profilePic the profilePic to set
+	 */
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+	
+	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -616,7 +634,7 @@ public class Person implements Serializable {
 				+ ", noOfSisters=" + noOfSisters + ", noOfBrother=" + noOfBrother + ", height=" + height + ", bodyType="
 				+ bodyType + ", complexion=" + complexion + ", challenged=" + challenged + ", primeryContactNo="
 				+ primeryContactNo + ", secoundryContactNo=" + secoundryContactNo + ", personStatus=" + personStatus
-				+ "]";
+				+ ", profilePic=" + profilePic + "]";
 	}
 	
 	
