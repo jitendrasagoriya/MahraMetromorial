@@ -1,4 +1,4 @@
-package com.jitendra.mehra.controller;
+package com.jitendra.mehra.endpoint;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,14 +33,15 @@ import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.PersonService;
 
 @RestController
-@RequestMapping(path="/person")
-public class PersonController {
+@RequestMapping(path="/api/person")
+public class PersonEndpoint {
 	
-	private final Logger logger = LoggerFactory.getLogger(PersonController.class);
+	private final Logger logger = LoggerFactory.getLogger(PersonEndpoint.class);
 	
 	@Autowired
 	private PersonService personService;
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public Page<Person>  getAll(Pageable pageable){
 		logger.info("getAll : {}");

@@ -29,7 +29,7 @@ public interface PersonRepository extends JpaRepository<Person, Long>  {
 	@Transactional
 	@Modifying
 	@Query("UPDATE  Person p SET p.profilePic = :name WHERE p.id = :id")
-	public int setProfilePic(@Param("id") Long id,@Param("status") String name);
+	public int setProfilePic(@Param("id") Long id,@Param("name") String name);
 	 
 
 }

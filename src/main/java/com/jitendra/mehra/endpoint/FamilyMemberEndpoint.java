@@ -1,4 +1,4 @@
-package com.jitendra.mehra.controller;
+package com.jitendra.mehra.endpoint;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,10 +28,10 @@ import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.FamilyMemberService;
 
 @RestController
-@RequestMapping(path = "/member")
-public class FamilyMemberController {
+@RequestMapping(path = "/api/member")
+public class FamilyMemberEndpoint {
 	
-	private final Logger logger = LoggerFactory.getLogger(FamilyMemberController.class);
+	private final Logger logger = LoggerFactory.getLogger(FamilyMemberEndpoint.class);
 	
 	@Autowired
 	private FamilyMemberService familyMemberService;
