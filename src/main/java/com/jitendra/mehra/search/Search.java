@@ -15,6 +15,7 @@ public class Search {
 	private List<BodyType> bodyTypes;
 	private List<Complexion> complexions;
 	private Height height;
+	  
 	/**
 	 * @return the age
 	 */
