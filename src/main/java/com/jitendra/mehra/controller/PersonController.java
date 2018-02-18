@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.mehra.domin.Person;
@@ -89,6 +90,15 @@ public class PersonController {
 		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);
 		
 	}
+	
+	
+	@Transactional
+	@RequestMapping(path = "/profilepic/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> setProfilePic(@PathVariable(name="id") long id,@RequestParam("picname") String name){
+		int i = personService.setProfilePic( id, name);
+		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);		
+	}
+
 
 	
 	public static void main(String[] args) {

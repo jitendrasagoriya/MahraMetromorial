@@ -1,5 +1,6 @@
 package com.jitendra.mehra.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,7 +16,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jitendra.mehra.domin.Person;
+import com.jitendra.mehra.enums.BodyType;
+import com.jitendra.mehra.enums.Complexion;
+import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.PersonStatus;
+import com.jitendra.mehra.enums.Qualification;
 import com.jitendra.mehra.repository.PersonRepository;
 import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.PersonService;
@@ -65,7 +70,7 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public List<Person> search(Search search) {
 		 
-		String withOutCityAndGotra  = "SELECT p FROM Person p WHERE (p.dob BETWEEN :ageStart AND :ageEnd) AND p.qualification IN (:qualification) "
+		String withOutCityAndGotra  = "SELECT p FROM Person p WHERE p.gender = :gender AND p.maritalStatus IN (:maritalStatus) AND (p.dob BETWEEN :ageStart AND :ageEnd) AND p.qualification IN (:qualification) "
 				+ "AND (p.income BETWEEN :incomeStart AND :incomeEnd) "
 				+ "AND p.bodyType IN (:bodyTypes) AND p.complexion IN( :complexions) AND (p.height BETWEEN :heightStart "
 				+ "AND :heightEnd) ";
@@ -109,11 +114,15 @@ public class PersonServiceImpl implements PersonService {
 		logger.info("complexions :{}",  search.getComplexions() );
 		logger.info("heightStart :{}",  search.getHeight() .getStart()  );
 		logger.info("heightEnd :{}",  search.getHeight().getEnd()  );
+		logger.info("gender :{}",  search.getGender() );
+		logger.info("MaritalStatus :{}",  search.getMaritalStatus() );
 				
 		
+		query.setParameter("gender", search.getGender() );	
+		query.setParameter("maritalStatus", search.getMaritalStatus()== null || search.getMaritalStatus().isEmpty()?Arrays.asList(MaritalStatus.values()):search.getMaritalStatus()  );	
 		query.setParameter("ageStart", DateUtility.decreaseYearsInCurrentDate( new Integer( search.getAge().getStart() ) ) );
 		query.setParameter("ageEnd", DateUtility.decreaseYearsInCurrentDate(  new Integer(search.getAge().getEnd() ) ) );	
-		query.setParameter("qualification", search.getQualifications()  );	
+		query.setParameter("qualification", search.getQualifications() == null || search.getQualifications().isEmpty()?Arrays.asList(Qualification.values()):search.getQualifications() );	
 		if( search.getGotra() != null && !search.getGotra().isEmpty() ) {
 			int iGotra = 1;
 			 for (String element : search.getGotra().split(",")) {
@@ -131,9 +140,9 @@ public class PersonServiceImpl implements PersonService {
 				 iCity++;
 			}	
 		}
-		query.setParameter("bodyTypes",  search.getBodyTypes() );
-		query.setParameter("complexions",  search.getComplexions() );
-		query.setParameter("heightStart",  search.getHeight().getStart()  );
+		query.setParameter("bodyTypes",  search.getBodyTypes() == null || search.getBodyTypes().isEmpty()?Arrays.asList(BodyType.values()):search.getBodyTypes() );
+		query.setParameter("complexions",search.getComplexions() == null || search.getComplexions().isEmpty()?Arrays.asList(Complexion.values()):search.getComplexions() );
+		query.setParameter("heightStart",search.getHeight().getStart()  );
 		query.setParameter("heightEnd",  search.getHeight().getEnd()  );
 		
 		List<Person> persons = query.getResultList();		
@@ -153,6 +162,12 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public Page<Person> getByLastName(String name, Pageable pageable) {
 		 return personRepository.getByLastName(name, pageable);
+	}
+
+	@Transactional
+	@Override
+	public int setProfilePic(Long id, String name) {
+		return personRepository.setProfilePic(id, name);
 	}
 
 	 

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Challenged;
 import com.jitendra.mehra.enums.Complexion;
+import com.jitendra.mehra.enums.Gender;
+import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
 
@@ -38,6 +40,8 @@ public class Person implements Serializable {
 	@Column(name="LASTENAME",nullable=false,length = 50)
 	private String lName;
 	
+	@Column(name="GENDER",nullable=true,length = 50)
+	private Gender gender;	
 	
 	@Column(name="DATEODBIRTH",nullable=false)
 	private Date dob;
@@ -103,7 +107,10 @@ public class Person implements Serializable {
 	private PersonStatus personStatus;
 	
 	@Column(name="PROFILEPIC",nullable=true)
-	private String profilePic;
+	private String profilePic;	
+	
+	@Column(name="MARITALSTATUS",nullable=true)	 
+	private MaritalStatus maritalStatus;
 
 	/**
 	 * @return the fName
@@ -477,6 +484,34 @@ public class Person implements Serializable {
 	
 	
 
+	/**
+	 * @return the gender
+	 */
+	public Gender getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the maritalStatus
+	 */
+	public MaritalStatus getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	/**
+	 * @param maritalStatus the maritalStatus to set
+	 */
+	public void setMaritalStatus(MaritalStatus maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -492,6 +527,7 @@ public class Person implements Serializable {
 		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
 		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
 		result = prime * result + (int) (familyIncome ^ (familyIncome >>> 32));
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
 		result = prime * result + ((gotraToSave == null) ? 0 : gotraToSave.hashCode());
 		result = prime * result + ((height == null) ? 0 : height.hashCode());
@@ -499,12 +535,14 @@ public class Person implements Serializable {
 		result = prime * result + (int) (income ^ (income >>> 32));
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
 		result = prime * result + ((mName == null) ? 0 : mName.hashCode());
+		result = prime * result + ((maritalStatus == null) ? 0 : maritalStatus.hashCode());
 		result = prime * result + ((nameOfCollage == null) ? 0 : nameOfCollage.hashCode());
 		result = prime * result + noOfBrother;
 		result = prime * result + noOfSisters;
 		result = prime * result + ((personStatus == null) ? 0 : personStatus.hashCode());
 		result = prime * result + ((placeOfBirth == null) ? 0 : placeOfBirth.hashCode());
 		result = prime * result + ((primeryContactNo == null) ? 0 : primeryContactNo.hashCode());
+		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
 		result = prime * result + ((qualification == null) ? 0 : qualification.hashCode());
 		result = prime * result + ((religion == null) ? 0 : religion.hashCode());
 		result = prime * result + ((secoundryContactNo == null) ? 0 : secoundryContactNo.hashCode());
@@ -552,6 +590,8 @@ public class Person implements Serializable {
 			return false;
 		if (familyIncome != other.familyIncome)
 			return false;
+		if (gender != other.gender)
+			return false;
 		if (gotra == null) {
 			if (other.gotra != null)
 				return false;
@@ -581,6 +621,8 @@ public class Person implements Serializable {
 				return false;
 		} else if (!mName.equals(other.mName))
 			return false;
+		if (maritalStatus != other.maritalStatus)
+			return false;
 		if (nameOfCollage == null) {
 			if (other.nameOfCollage != null)
 				return false;
@@ -601,6 +643,11 @@ public class Person implements Serializable {
 			if (other.primeryContactNo != null)
 				return false;
 		} else if (!primeryContactNo.equals(other.primeryContactNo))
+			return false;
+		if (profilePic == null) {
+			if (other.profilePic != null)
+				return false;
+		} else if (!profilePic.equals(other.profilePic))
 			return false;
 		if (qualification != other.qualification)
 			return false;
@@ -627,14 +674,15 @@ public class Person implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", dob=" + dob
-				+ ", tob=" + tob + ", placeOfBirth=" + placeOfBirth + ", qualification=" + qualification + ", religion="
-				+ religion + ", cast=" + cast + ", gotra=" + gotra + ", gotraToSave=" + gotraToSave + ", nameOfCollage="
-				+ nameOfCollage + ", income=" + income + ", familyIncome=" + familyIncome + ", city=" + city
-				+ ", noOfSisters=" + noOfSisters + ", noOfBrother=" + noOfBrother + ", height=" + height + ", bodyType="
-				+ bodyType + ", complexion=" + complexion + ", challenged=" + challenged + ", primeryContactNo="
-				+ primeryContactNo + ", secoundryContactNo=" + secoundryContactNo + ", personStatus=" + personStatus
-				+ ", profilePic=" + profilePic + "]";
+		return "Person [id=" + id + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", gender=" + gender
+				+ ", dob=" + dob + ", tob=" + tob + ", placeOfBirth=" + placeOfBirth + ", qualification="
+				+ qualification + ", religion=" + religion + ", cast=" + cast + ", gotra=" + gotra + ", gotraToSave="
+				+ gotraToSave + ", nameOfCollage=" + nameOfCollage + ", income=" + income + ", familyIncome="
+				+ familyIncome + ", city=" + city + ", noOfSisters=" + noOfSisters + ", noOfBrother=" + noOfBrother
+				+ ", height=" + height + ", bodyType=" + bodyType + ", complexion=" + complexion + ", challenged="
+				+ challenged + ", primeryContactNo=" + primeryContactNo + ", secoundryContactNo=" + secoundryContactNo
+				+ ", personStatus=" + personStatus + ", profilePic=" + profilePic + ", maritalStatus=" + maritalStatus
+				+ "]";
 	}
 	
 	

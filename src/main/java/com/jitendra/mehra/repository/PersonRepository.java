@@ -25,6 +25,11 @@ public interface PersonRepository extends JpaRepository<Person, Long>  {
 	@Modifying
 	@Query("UPDATE  Person p SET p.personStatus = :status WHERE p.id = :id")
 	public int hide(@Param("id") Long id,@Param("status") PersonStatus status);
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE  Person p SET p.profilePic = :name WHERE p.id = :id")
+	public int setProfilePic(@Param("id") Long id,@Param("status") String name);
 	 
 
 }

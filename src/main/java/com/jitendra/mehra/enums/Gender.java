@@ -3,20 +3,18 @@ package com.jitendra.mehra.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Relation {
-
-	FATHER(0,"FATHER"),
-	MOTHER(1,"MOTHER"),
-	BORTHER(2,"BORTHER"),
-	SISTER(3,"SISTER");
-	 
-
-	private static final Map<Integer, Relation> byId = new HashMap<>();
-	private static final Map<String, Relation> byValue = new HashMap<>();
+public enum Gender {
+	
+	FEMALE(0,"Female"),
+	MALE(1,"Male");
+	
+	
+	private static final Map<Integer, Gender> byId = new HashMap<>();
+	private static final Map<String, Gender> byValue = new HashMap<>();
 	
 	
 	static {
-	     for (Relation e : Relation.values() ) {
+	     for (Gender e : Gender.values() ) {
 	            if (byId.put(e.getId(), e) != null) {
 	                throw new IllegalArgumentException("duplicate id: " + e.getId());
 	            }
@@ -28,29 +26,27 @@ public enum Relation {
 	 }
 	
 	
-	public static Relation getById(int id) {
+	public static Gender getById(int id) {
 	    return byId.get(id);
 	 }
 	 
-	public static Relation getByValue(String value) {
+	public static Gender getByValue(String value) {
 		    return byValue.get(value);
 	}
 	
+	
 	private int id;
 	
-	
 	private String value;
-
 
 	/**
 	 * @param id
 	 * @param value
 	 */
-	private Relation(int id, String value) {
+	private Gender(int id, String value) {
 		this.id = id;
 		this.value = value;
 	}
-
 
 	/**
 	 * @return the id
@@ -58,7 +54,6 @@ public enum Relation {
 	public int getId() {
 		return id;
 	}
-
 
 	/**
 	 * @return the value
@@ -68,4 +63,5 @@ public enum Relation {
 	}
 	
 	
+
 }

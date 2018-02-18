@@ -1,5 +1,8 @@
 package com.jitendra.mehra.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Complexion {
 
 	VERYFAIR(0,"VERYFAIR"),
@@ -7,6 +10,32 @@ public enum Complexion {
 	WHEATISH(2,"WHEATISH"),
 	WHEATISH_BROWN(3,"WHEATISH BROWN"),
 	DARK(4,"DARK");
+	
+	
+	private static final Map<Integer, Complexion> byId = new HashMap<Integer, Complexion>();
+	private static final Map<String, Complexion> byValue = new HashMap<String, Complexion>();
+	
+	
+	static {
+	     for (Complexion e : Complexion.values() ) {
+	            if (byId.put(e.getId(), e) != null) {
+	                throw new IllegalArgumentException("duplicate id: " + e.getId());
+	            }
+	            
+	            if (byValue.put(e.getValue(), e) != null) {
+	                throw new IllegalArgumentException("duplicate value: " + e.getValue());
+	            }
+	    }
+	 }
+	
+	
+	public static Complexion getById(int id) {
+	    return byId.get(id);
+	 }
+	 
+	public static Complexion getByValue(String value) {
+		    return byValue.get(value);
+	}
 	
 	
 	private int id;

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Complexion;
+import com.jitendra.mehra.enums.Gender;
+import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.Qualification;
 
 public class Search {
@@ -15,6 +17,8 @@ public class Search {
 	private List<BodyType> bodyTypes;
 	private List<Complexion> complexions;
 	private Height height;
+	private Gender gender;
+	private List<MaritalStatus> maritalStatus;
 	  
 	/**
 	 * @return the age
@@ -113,77 +117,32 @@ public class Search {
 	public void setHeight(Height height) {
 		this.height = height;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	
+	/**
+	 * @return the gender
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((age == null) ? 0 : age.hashCode());
-		result = prime * result + ((bodyTypes == null) ? 0 : bodyTypes.hashCode());
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((complexions == null) ? 0 : complexions.hashCode());
-		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
-		result = prime * result + ((height == null) ? 0 : height.hashCode());
-		result = prime * result + ((income == null) ? 0 : income.hashCode());
-		result = prime * result + ((qualifications == null) ? 0 : qualifications.hashCode());
-		return result;
+	public Gender getGender() {
+		return gender;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * @param gender the gender to set
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Search other = (Search) obj;
-		if (age == null) {
-			if (other.age != null)
-				return false;
-		} else if (!age.equals(other.age))
-			return false;
-		if (bodyTypes == null) {
-			if (other.bodyTypes != null)
-				return false;
-		} else if (!bodyTypes.equals(other.bodyTypes))
-			return false;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (complexions == null) {
-			if (other.complexions != null)
-				return false;
-		} else if (!complexions.equals(other.complexions))
-			return false;
-		if (gotra == null) {
-			if (other.gotra != null)
-				return false;
-		} else if (!gotra.equals(other.gotra))
-			return false;
-		if (height == null) {
-			if (other.height != null)
-				return false;
-		} else if (!height.equals(other.height))
-			return false;
-		if (income == null) {
-			if (other.income != null)
-				return false;
-		} else if (!income.equals(other.income))
-			return false;
-		if (qualifications == null) {
-			if (other.qualifications != null)
-				return false;
-		} else if (!qualifications.equals(other.qualifications))
-			return false;
-		return true;
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
+	/**
+	 * @return the maritalStatus
+	 */
+	public List<MaritalStatus> getMaritalStatus() {
+		return maritalStatus;
+	}
+	/**
+	 * @param maritalStatus the maritalStatus to set
+	 */
+	public void setMaritalStatus(List<MaritalStatus> maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -191,7 +150,7 @@ public class Search {
 	public String toString() {
 		return "Search [age=" + age + ", qualifications=" + qualifications + ", gotra=" + gotra + ", income=" + income
 				+ ", city=" + city + ", bodyTypes=" + bodyTypes + ", complexions=" + complexions + ", height=" + height
-				+ "]";
+				+ ", gender=" + gender + ", maritalStatus=" + maritalStatus + "]";
 	}
 	
 	

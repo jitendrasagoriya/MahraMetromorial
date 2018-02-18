@@ -34,6 +34,8 @@ public interface PersonService {
 	
 	public int temporyHide(Long id,PersonStatus status);
 	
+	public int setProfilePic(Long id,String name);
+	
 	/**
 	 * 
 	 * new PageRequest(1, 
