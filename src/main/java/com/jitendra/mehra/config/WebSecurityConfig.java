@@ -12,11 +12,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests() //
-				.anyRequest().authenticated() //
-				.and().requestCache().requestCache(new NullRequestCache()) //
-				.and().httpBasic() //
-				.and().csrf().disable();
+		
+		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll()
+		.and().authorizeRequests()
+		.antMatchers("/console/**").permitAll()
+		.antMatchers("/api/**").authenticated()
+		.and().requestCache().requestCache(new NullRequestCache()) //
+		.and().httpBasic() //
+		.and().csrf().disable();
+		
+		http.headers().frameOptions().disable();		
+		 
 	}
 
 	@Autowired
