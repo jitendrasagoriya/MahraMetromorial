@@ -18,7 +18,7 @@ public interface PersonService {
 	 
 	public Page<Person> get(Pageable pageable);
 	
-	public Person getById(long id);
+	public Person getById(String id);
 	
 	public Person save(Person person);	
 	 
@@ -30,11 +30,11 @@ public interface PersonService {
 	
 	public Person update(Person person);
 	
-	public void delete(Long Id);
+	public void delete(String Id);
 	
-	public int temporyHide(Long id,PersonStatus status);
+	public int temporyHide(String username,PersonStatus status);
 	
-	public int setProfilePic(Long id,String name);
+	public int setProfilePic(String username,String name);
 	
 	/**
 	 * 

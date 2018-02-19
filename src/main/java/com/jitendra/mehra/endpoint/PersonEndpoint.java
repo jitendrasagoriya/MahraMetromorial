@@ -1,5 +1,6 @@
 package com.jitendra.mehra.endpoint;
 
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,14 +50,15 @@ public class PersonEndpoint {
 		return  personService.get(pageable) ;
 	}
 	
-	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Person>  getById(@PathVariable(name="id") long id){
+	@RequestMapping(path = "/{name}", method = RequestMethod.GET)
+	public ResponseEntity<Person>  getById(@PathVariable(name="name") String id){
 		logger.info("getById : {}", id);
 		return  new ResponseEntity<Person>(  personService.getById(id),HttpStatus.OK);				
 	}
 	
+	@Secured("ROLE_NEW")
 	@RequestMapping(path = "/" , method = RequestMethod.POST)
-	public ResponseEntity<Person> add(@RequestBody Person person ){	
+	public ResponseEntity<Person> add(@AuthenticationPrincipal Principal user ,@RequestBody Person person ){	
 		logger.info("add : {}", person);
 		return new ResponseEntity<Person>(  personService.save(person),HttpStatus.OK);		
 	}
@@ -74,8 +77,8 @@ public class PersonEndpoint {
 		return new ResponseEntity< Person>( personService.update(person) ,HttpStatus.OK);
 	}
 	
-	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Boolean> delete(@PathVariable(name="id") long id){
+	@RequestMapping(path = "/{name}", method = RequestMethod.DELETE)
+	public ResponseEntity<Boolean> delete(@PathVariable(name="id") String id){
 		try {
 			personService.delete(id);
 			return new ResponseEntity< Boolean>( true ,HttpStatus.OK);
@@ -86,18 +89,18 @@ public class PersonEndpoint {
 	}
 	
 	@Transactional
-	@RequestMapping(path = "/Status/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> hide(@PathVariable(name="id") long id){
-		int i = personService.temporyHide(id, PersonStatus.HIDE);
+	@RequestMapping(path = "/Status/", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> hide(@AuthenticationPrincipal Principal user){
+		int i = personService.temporyHide(user.getName(), PersonStatus.HIDE);
 		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);
 		
 	}
 	
 	
 	@Transactional
-	@RequestMapping(path = "/profilepic/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> setProfilePic(@PathVariable(name="id") long id,@RequestParam("picname") String name){
-		int i = personService.setProfilePic( id, name);
+	@RequestMapping(path = "/profilepic/", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> setProfilePic(@AuthenticationPrincipal Principal user,@RequestParam("picname") String name){
+		int i = personService.setProfilePic( user.getName(), name);
 		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);		
 	}
 

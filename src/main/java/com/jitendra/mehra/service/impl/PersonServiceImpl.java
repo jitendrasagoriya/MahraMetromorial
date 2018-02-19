@@ -41,7 +41,7 @@ public class PersonServiceImpl implements PersonService {
 	
 
 	@Override
-	public Person getById(long id) {
+	public Person getById(String id) {
 		return personRepository.findOne(id);
 	}
 
@@ -56,14 +56,14 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public void delete(Long id) throws IllegalArgumentException  {
+	public void delete(String id) throws IllegalArgumentException  {
 		personRepository.delete(id);
 	}
 
 	@Transactional
 	@Override
-	public int temporyHide(Long id,PersonStatus status) {
-		return personRepository.hide(id, status);
+	public int temporyHide(String username,PersonStatus status) {
+		return personRepository.hide(username, status);
 	}
 
 	@SuppressWarnings({ "unused" })
@@ -166,8 +166,8 @@ public class PersonServiceImpl implements PersonService {
 
 	@Transactional
 	@Override
-	public int setProfilePic(Long id, String name) {
-		return personRepository.setProfilePic(id, name);
+	public int setProfilePic(String username, String name) {
+		return personRepository.setProfilePic(username, name);
 	}
 
 	 

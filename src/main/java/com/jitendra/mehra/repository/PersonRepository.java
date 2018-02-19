@@ -12,7 +12,7 @@ import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.enums.PersonStatus;
 
 
-public interface PersonRepository extends JpaRepository<Person, Long>  {
+public interface PersonRepository extends JpaRepository<Person, String>  {
 	
 	
 	@Query("SELECT p FROM Person p WHERE p.fName = :name")
@@ -23,13 +23,13 @@ public interface PersonRepository extends JpaRepository<Person, Long>  {
 	
 	@Transactional
 	@Modifying
-	@Query("UPDATE  Person p SET p.personStatus = :status WHERE p.id = :id")
-	public int hide(@Param("id") Long id,@Param("status") PersonStatus status);
+	@Query("UPDATE  Person p SET p.personStatus = :status WHERE p.userName = :username")
+	public int hide(@Param("username") String username,@Param("status") PersonStatus status);
 	
 	@Transactional
 	@Modifying
-	@Query("UPDATE  Person p SET p.profilePic = :name WHERE p.id = :id")
-	public int setProfilePic(@Param("id") Long id,@Param("name") String name);
+	@Query("UPDATE  Person p SET p.profilePic = :name WHERE p.userName = :username")
+	public int setProfilePic(@Param("username") String username,@Param("name") String name);
 	 
 
 }

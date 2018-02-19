@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Challenged;
@@ -27,9 +28,12 @@ public class Person implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ID",nullable=true,unique = true)
 	private long id;
+	
+	@Id
+	@Column(name="USERNAME",nullable=true,length = 50,unique = true)
+	private String userName;
 	
 	@Column(name="FIRSTNAME",nullable=false,length = 50)
 	private String fName;
@@ -512,6 +516,20 @@ public class Person implements Serializable {
 		this.maritalStatus = maritalStatus;
 	}
 
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -547,6 +565,7 @@ public class Person implements Serializable {
 		result = prime * result + ((religion == null) ? 0 : religion.hashCode());
 		result = prime * result + ((secoundryContactNo == null) ? 0 : secoundryContactNo.hashCode());
 		result = prime * result + ((tob == null) ? 0 : tob.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 
@@ -666,6 +685,11 @@ public class Person implements Serializable {
 				return false;
 		} else if (!tob.equals(other.tob))
 			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
 		return true;
 	}
 
@@ -674,15 +698,15 @@ public class Person implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", gender=" + gender
-				+ ", dob=" + dob + ", tob=" + tob + ", placeOfBirth=" + placeOfBirth + ", qualification="
-				+ qualification + ", religion=" + religion + ", cast=" + cast + ", gotra=" + gotra + ", gotraToSave="
-				+ gotraToSave + ", nameOfCollage=" + nameOfCollage + ", income=" + income + ", familyIncome="
-				+ familyIncome + ", city=" + city + ", noOfSisters=" + noOfSisters + ", noOfBrother=" + noOfBrother
-				+ ", height=" + height + ", bodyType=" + bodyType + ", complexion=" + complexion + ", challenged="
-				+ challenged + ", primeryContactNo=" + primeryContactNo + ", secoundryContactNo=" + secoundryContactNo
-				+ ", personStatus=" + personStatus + ", profilePic=" + profilePic + ", maritalStatus=" + maritalStatus
-				+ "]";
+		return "Person [id=" + id + ", userName=" + userName + ", fName=" + fName + ", mName=" + mName + ", lName="
+				+ lName + ", gender=" + gender + ", dob=" + dob + ", tob=" + tob + ", placeOfBirth=" + placeOfBirth
+				+ ", qualification=" + qualification + ", religion=" + religion + ", cast=" + cast + ", gotra=" + gotra
+				+ ", gotraToSave=" + gotraToSave + ", nameOfCollage=" + nameOfCollage + ", income=" + income
+				+ ", familyIncome=" + familyIncome + ", city=" + city + ", noOfSisters=" + noOfSisters
+				+ ", noOfBrother=" + noOfBrother + ", height=" + height + ", bodyType=" + bodyType + ", complexion="
+				+ complexion + ", challenged=" + challenged + ", primeryContactNo=" + primeryContactNo
+				+ ", secoundryContactNo=" + secoundryContactNo + ", personStatus=" + personStatus + ", profilePic="
+				+ profilePic + ", maritalStatus=" + maritalStatus + "]";
 	}
 	
 	
