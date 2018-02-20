@@ -16,12 +16,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jitendra.mehra.domin.Person;
+import com.jitendra.mehra.domin.UserRoles;
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Complexion;
 import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
 import com.jitendra.mehra.repository.PersonRepository;
+import com.jitendra.mehra.repository.UserRolesRepository;
 import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.PersonService;
 import com.jitendra.mehra.utils.DateUtility;
@@ -37,6 +39,9 @@ public class PersonServiceImpl implements PersonService {
 	
 	@Autowired
 	private PersonRepository personRepository;
+	
+	@Autowired
+	private UserRolesRepository userRolesRepository;
 
 	
 
@@ -47,6 +52,17 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public Person save(Person person) {
+		try {
+			person.setId(personRepository.getNextSeriesId());
+			person = personRepository.saveAndFlush(person);
+			UserRoles userRoles = new UserRoles();
+			userRoles.setRole("ROLE_USER");
+			userRoles.setUserName(person.getUserName());
+			userRolesRepository.save(userRoles);
+			
+		}catch (Exception e) {
+			logger.error(e.getMessage(),e);
+		}
 		return personRepository.saveAndFlush(person);
 	}
 

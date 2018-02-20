@@ -31,5 +31,9 @@ public interface PersonRepository extends JpaRepository<Person, String>  {
 	@Query("UPDATE  Person p SET p.profilePic = :name WHERE p.userName = :username")
 	public int setProfilePic(@Param("username") String username,@Param("name") String name);
 	 
+	
+	@Query(value = "SELECT nextval('PERSON')", nativeQuery =
+            true)
+    Long getNextSeriesId();
 
 }

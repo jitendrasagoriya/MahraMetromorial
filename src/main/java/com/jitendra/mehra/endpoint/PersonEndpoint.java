@@ -60,6 +60,8 @@ public class PersonEndpoint {
 	@RequestMapping(path = "/" , method = RequestMethod.POST)
 	public ResponseEntity<Person> add(@AuthenticationPrincipal Principal user ,@RequestBody Person person ){	
 		logger.info("add : {}", person);
+		logger.info("user Name : {}", user.getName());
+		person.setUserName(user.getName());
 		return new ResponseEntity<Person>(  personService.save(person),HttpStatus.OK);		
 	}
 	
@@ -89,7 +91,7 @@ public class PersonEndpoint {
 	}
 	
 	@Transactional
-	@RequestMapping(path = "/Status/", method = RequestMethod.PUT)
+	@RequestMapping(path = "/Status", method = RequestMethod.PUT)
 	public ResponseEntity<Boolean> hide(@AuthenticationPrincipal Principal user){
 		int i = personService.temporyHide(user.getName(), PersonStatus.HIDE);
 		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);
@@ -98,7 +100,7 @@ public class PersonEndpoint {
 	
 	
 	@Transactional
-	@RequestMapping(path = "/profilepic/", method = RequestMethod.PUT)
+	@RequestMapping(path = "/profilepic", method = RequestMethod.PUT)
 	public ResponseEntity<Boolean> setProfilePic(@AuthenticationPrincipal Principal user,@RequestParam("picname") String name){
 		int i = personService.setProfilePic( user.getName(), name);
 		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);		

@@ -29,6 +29,7 @@ public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name="ID",nullable=true,unique = true)
+	@GeneratedValue(strategy = GenerationType.AUTO )
 	private long id;
 	
 	@Id
