@@ -1,8 +1,6 @@
 package com.jitendra.mehra.endpoint;
 
 import java.security.Principal;
-import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,13 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.mehra.domin.Person;
-import com.jitendra.mehra.enums.BodyType;
-import com.jitendra.mehra.enums.Complexion;
 import com.jitendra.mehra.enums.PersonStatus;
-import com.jitendra.mehra.enums.Qualification;
-import com.jitendra.mehra.search.Age;
-import com.jitendra.mehra.search.Height;
-import com.jitendra.mehra.search.Income;
 import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.PersonService;
 
@@ -65,6 +57,7 @@ public class PersonEndpoint {
 		return new ResponseEntity<Person>(  personService.save(person),HttpStatus.OK);		
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(path = "/search", method = RequestMethod.POST)
 	public ResponseEntity<Page<Person>> search(@RequestBody Search search,Pageable pageable ){	
 		logger.info("search : {}", search);
@@ -73,12 +66,15 @@ public class PersonEndpoint {
 		return new ResponseEntity<Page<Person>>( pages ,HttpStatus.OK);		
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(path = "/" , method = RequestMethod.PUT)
-	public ResponseEntity<Person> update(@RequestBody Person person){
+	public ResponseEntity<Person> update(@AuthenticationPrincipal Principal user ,@RequestBody Person person){
 		logger.info("update :  person : {}", person);
+		person.setUserName(user.getName());
 		return new ResponseEntity< Person>( personService.update(person) ,HttpStatus.OK);
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(path = "/{name}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> delete(@PathVariable(name="id") String id){
 		try {
@@ -106,20 +102,4 @@ public class PersonEndpoint {
 		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);		
 	}
 
-
-	
-	public static void main(String[] args) {
-		System.out.println( new Timestamp(System.currentTimeMillis()));
-		
-		Search obj = new Search();
-		obj.setAge(new Age("12", "25"));
-		 obj.setQualifications(Arrays.asList(Qualification.G,Qualification.PG));
-		 obj.setGotra("Gotra1,Gotra2,Gotra3");
-		 obj.setBodyTypes(Arrays.asList(BodyType.AVERAGE));
-		 obj.setCity("itarsi,indore");		 
-		 obj.setComplexions(Arrays.asList(Complexion.DARK,Complexion.VERYFAIR,Complexion.WHEATISH_BROWN ));
-		 obj.setIncome(new Income("120000", "250000"));
-		 obj.setHeight(new Height("4.5", "5.1"));
-		
-	}
 }

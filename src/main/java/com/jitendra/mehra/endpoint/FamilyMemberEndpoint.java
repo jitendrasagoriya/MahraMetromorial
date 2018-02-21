@@ -60,30 +60,6 @@ public class FamilyMemberEndpoint {
 		return new ResponseEntity<FamilyMember>(  familyMemberService.save(familyMember),HttpStatus.OK);
 	}
 	
-	public static void main(String[] args) {
-		ObjectMapper mapper = new ObjectMapper();
-		Search obj = new Search();
-		obj.setAge(new Age("12", "25"));
-		 obj.setQualifications(Arrays.asList(Qualification.G,Qualification.PG));
-		 obj.setGotra("Gotra1,Gotra2,Gotra3");
-		 obj.setBodyTypes(Arrays.asList(BodyType.AVERAGE));
-		 obj.setCity("itarsi,indore");		 
-		 obj.setComplexions(Arrays.asList(Complexion.DARK,Complexion.VERYFAIR,Complexion.WHEATISH_BROWN ));
-		 obj.setIncome(new Income("120000", "250000"));
-		 obj.setHeight(new Height("4.5", "5.1"));
 
-		//Object to JSON in file
-		try {
-			mapper.writeValue(new File("d:\\file2.json"), obj);
-			
-			//Object to JSON in String
-			String jsonInString = mapper.writeValueAsString(obj);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-	}
 
 }

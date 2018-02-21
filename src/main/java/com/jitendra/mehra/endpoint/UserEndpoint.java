@@ -1,8 +1,5 @@
 package com.jitendra.mehra.endpoint;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.h2.jdbc.JdbcSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jitendra.mehra.domin.User;
 import com.jitendra.mehra.domin.UserAlreadyExistsException;
 import com.jitendra.mehra.service.UserService;

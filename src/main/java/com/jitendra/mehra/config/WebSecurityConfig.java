@@ -3,14 +3,30 @@ package com.jitendra.mehra.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.savedrequest.NullRequestCache;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
+import org.springframework.social.connect.web.ProviderSignInController;
+
+import com.jitendra.mehra.service.impl.FacebookConnectionSignup;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+    private ConnectionFactoryLocator connectionFactoryLocator;
+ 
+    @Autowired
+    private UsersConnectionRepository usersConnectionRepository;
+ 
+    @Autowired
+    private FacebookConnectionSignup facebookConnectionSignup;
 	
 	
 	@Autowired
@@ -39,5 +55,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.usersByUsernameQuery("select username,password, enabled from users where username=?")
 			.authoritiesByUsernameQuery("select username, role from user_roles where username=?");//
 	}
+	
+	@Bean
+    public ProviderSignInController providerSignInController() {
+        ((InMemoryUsersConnectionRepository) usersConnectionRepository)
+          .setConnectionSignUp(facebookConnectionSignup);
+         
+        return new ProviderSignInController(
+          connectionFactoryLocator, 
+          usersConnectionRepository, 
+          new FacebookSignInAdapter());
+    }
 
 }
