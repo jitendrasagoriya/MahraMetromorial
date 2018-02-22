@@ -16,17 +16,17 @@ public class RequestAndLikeIdenntity implements Serializable {
 	
 	@NotNull
 	@Column(name="ID", nullable = false)
-	private Long id;
+	private String id;
 	
 	@NotNull
 	@Column(name="SECOUNDID", nullable = false)
-	private Long secoundryId;
+	private String secoundryId;
 
 	/**
 	 * @param id
 	 * @param secoundryId
 	 */
-	public RequestAndLikeIdenntity(Long id, Long secoundryId) {
+	public RequestAndLikeIdenntity(String id, String secoundryId) {
 		super();
 		this.id = id;
 		this.secoundryId = secoundryId;
@@ -43,28 +43,28 @@ public class RequestAndLikeIdenntity implements Serializable {
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the secoundryId
 	 */
-	public Long getSecoundryId() {
+	public String getSecoundryId() {
 		return secoundryId;
 	}
 
 	/**
 	 * @param secoundryId the secoundryId to set
 	 */
-	public void setSecoundryId(Long secoundryId) {
+	public void setSecoundryId(String secoundryId) {
 		this.secoundryId = secoundryId;
 	}
 
