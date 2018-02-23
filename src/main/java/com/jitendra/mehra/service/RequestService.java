@@ -14,15 +14,20 @@ public interface RequestService {
 	
 	public Request get(RequestAndLikeIdenntity idenntity);
 	
-	public Page<Request> getByPrimeryId(String id,Pageable pageable);
+	public Page<Request> send(String id,Pageable pageable);
+	
+	public Page<Request> recive(String id,Pageable pageable);	 
+	
+	public int accept(String id,String sId);
+	
+	public int decline(String id,String sId);
+	
+	public int waiting(String id,String sId);
 	
 	public Request save(Request request);
 	
 	public int update(Request request);
 	
-	public void delete(Request request);
-	
-	 
-	
+	public void delete(Request request);	
 
 }

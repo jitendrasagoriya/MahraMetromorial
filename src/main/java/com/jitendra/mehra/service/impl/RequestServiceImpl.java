@@ -28,8 +28,8 @@ public class RequestServiceImpl implements RequestService{
 	}
 
 	@Override
-	public Page<Request> getByPrimeryId(String id,Pageable pageable) {
-		return requestRepository.get(id, pageable);
+	public Page<Request> send(String id,Pageable pageable) {
+		return requestRepository.send(id, pageable);
 	}
 
 	@Override
@@ -39,12 +39,37 @@ public class RequestServiceImpl implements RequestService{
 
 	@Override
 	public int update(Request request) {
-		return 0;
+		try {
+			requestRepository.saveAndFlush(request);
+			return 1;
+		}catch (Exception e) {
+			return 0;
+		}		
 	}
 
 	@Override
 	public void delete(Request request) {
 		requestRepository.delete(request);		
+	}
+
+	@Override
+	public Page<Request> recive(String id, Pageable pageable) {
+		return requestRepository.recivied(id, pageable);
+	}
+
+	@Override
+	public int accept(String id, String sId) {
+		return requestRepository.accept(id, sId);
+	}
+
+	@Override
+	public int decline(String id, String sId) {
+		return requestRepository.decline(id, sId);
+	}
+
+	@Override
+	public int waiting(String id, String sId) {
+		return requestRepository.waiting(id, sId);
 	}
 
 }
