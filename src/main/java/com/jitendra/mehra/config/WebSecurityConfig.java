@@ -8,12 +8,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 
+import com.jitendra.mehra.filter.CrosFilter;
 import com.jitendra.mehra.service.impl.FacebookConnectionSignup;
 
 @EnableWebSecurity
@@ -35,10 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll()
+		http .addFilterBefore(new CrosFilter(), ChannelProcessingFilter.class)
+		.csrf().disable().authorizeRequests().antMatchers("/").permitAll()
 		.and().authorizeRequests()
 		.antMatchers("/console/**").permitAll()
 		.antMatchers("/register").permitAll()
+		.antMatchers("/auth").permitAll()
 		.antMatchers("/api/**").authenticated()
 		.and().requestCache().requestCache(new NullRequestCache()) //
 		.and().httpBasic() //
@@ -55,6 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.usersByUsernameQuery("select username,password, enabled from users where username=?")
 			.authoritiesByUsernameQuery("select username, role from user_roles where username=?");//
 	}
+	
+	
 	
 	@Bean
     public ProviderSignInController providerSignInController() {

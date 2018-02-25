@@ -9,25 +9,30 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+@Component
 public class CrosFilter extends  OncePerRequestFilter  {
 	
 	 private final Logger logger = LoggerFactory.getLogger(CrosFilter.class);
 	 
 	  @Override
 	    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-	            throws ServletException, IOException {
+	            throws ServletException, IOException {	
 		  
-		   logger.info("Jeet request {}",request);
-		  
-	        response.addHeader("Access-Control-Allow-Origin", "*");        
-	        if (request.getHeader("Access-Control-Request-Method") != null && "OPTIONS".equals(request.getMethod())); {
-	            // CORS "pre-flight" request
-	            response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE ");
-	            response.addHeader("Access-Control-Allow-Headers", "Authorization");        
-	            response.addHeader("Access-Control-Max-Age", "1728000");
+		  logger.info(" inside jeet  request { } and responce {}" ,request,response);
+		   
+	        response.setHeader("Access-Control-Allow-Origin", "*");
+	        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	        response.setHeader("Access-Control-Max-Age", "3600");
+	        response.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token , x-requested-with, authorization");
+	       
+
+	        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+	            response.setStatus(HttpServletResponse.SC_OK);
+	        } else {
+	        	filterChain.doFilter(request, response);
 	        }
-	        filterChain.doFilter(request, response);
 	    }
 }

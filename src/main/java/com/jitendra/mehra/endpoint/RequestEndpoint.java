@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.domin.Request;
 import com.jitendra.mehra.domin.RequestAndLikeIdenntity;
 import com.jitendra.mehra.enums.RequestStatus;
@@ -27,7 +26,7 @@ import com.jitendra.mehra.service.RequestService;
 @RequestMapping("/api/request")
 public class RequestEndpoint {
 	
-	private final Logger logger = LoggerFactory.getLogger(PersonEndpoint.class);
+	private final Logger logger = LoggerFactory.getLogger(RequestEndpoint.class);
 	
 	@Autowired
 	private RequestService requestService;
