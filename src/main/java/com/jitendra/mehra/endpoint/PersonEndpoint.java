@@ -42,6 +42,13 @@ public class PersonEndpoint {
 		return  personService.get(pageable) ;
 	}
 	
+	@Secured("ROLE_USER")
+	@RequestMapping(path = "/profile/view", method = RequestMethod.GET)
+	public ResponseEntity<Person>  viewProfile(@AuthenticationPrincipal Principal user ){
+		logger.info("view : {}" ,user.getName());
+		return  new ResponseEntity<Person>( personService.getById( user.getName() ),HttpStatus.OK ) ;
+	}
+	
 	@RequestMapping(path = "/{name}", method = RequestMethod.GET)
 	public ResponseEntity<Person>  getById(@PathVariable(name="name") String id){
 		logger.info("getById : {}", id);
