@@ -2,7 +2,7 @@ package com.jitendra.mehra.service;
 
 import java.util.List;
 
-import org.h2.jdbc.JdbcSQLException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import com.jitendra.mehra.domin.UserRoles;
 public interface UserService {
 	
 	public User register(User user) throws UserAlreadyExistsException ;	
-	public User register(User user,UserRoles userRoles) throws UserAlreadyExistsException, JdbcSQLException;	
+	public User register(User user,UserRoles userRoles) throws UserAlreadyExistsException;	
 	public User getByUserName(String userName);
 	public Page<User> get(Pageable pageable);
 	public void delete(String userName);

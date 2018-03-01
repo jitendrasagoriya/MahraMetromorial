@@ -2,7 +2,7 @@ package com.jitendra.mehra.service.impl;
 
 import java.util.Arrays;
 
-import org.h2.jdbc.JdbcSQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService,UserRolesService   {
 	}
 
 	@Override
-	public User register(User user, UserRoles userRoles) throws UserAlreadyExistsException, JdbcSQLException {
+	public User register(User user, UserRoles userRoles) throws UserAlreadyExistsException {
 		User registerUser = null;
 		
 		try {

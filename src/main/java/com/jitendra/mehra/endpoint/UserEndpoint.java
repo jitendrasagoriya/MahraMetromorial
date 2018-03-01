@@ -1,6 +1,6 @@
 package com.jitendra.mehra.endpoint;
 
-import org.h2.jdbc.JdbcSQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class UserEndpoint {
 		logger.info("add : {}", user);
 		try {
 			return new ResponseEntity<User>(  userService.register(user,null),HttpStatus.OK);
-		}catch (UserAlreadyExistsException | JdbcSQLException e) {
+		}catch (UserAlreadyExistsException e) {
 			return new ResponseEntity<String>(  "User is rlready registered",HttpStatus.OK);
 		}
 	}	
