@@ -128,10 +128,10 @@ public class Person implements Serializable {
 	@Column(name="DRINK",nullable=true,columnDefinition = "int default '0'")	 
 	private Drink drink;
 	
-	@Column(name="DOINGJOB",nullable=true ,columnDefinition = "int default 'false'")	 
+	@Column(name="DOINGJOB",nullable=true)	 
 	private Boolean doingJob;
 	
-	@Column(name="WISHTOJOB",nullable=true,columnDefinition = "int default 'false'")	 
+	@Column(name="WISHTOJOB",nullable=true)	 
 	private Boolean wishToJob;
 	
 	@Column(name="COMPANYNAME",nullable=true)	 
