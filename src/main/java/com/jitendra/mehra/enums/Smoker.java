@@ -3,48 +3,48 @@ package com.jitendra.mehra.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum PersonStatus {
+public enum Smoker {
 	
-	ACTIVE(0,"ACTIVE"),
-	HIDE(1,"HIDE"),
-	DELETE(2,"DELETE"),
-	SUSPAND(3,"SUSPAND");
+	NA(0,"NA"),
+	NO(1,"No"),
+	YES(2,"Yes"),
+	OCCASIONALLY(4,"Occasionally");
+	
+	private int id;
+	
+	private String value;
 	
 	
-	private static final Map<Integer, PersonStatus> byId = new HashMap<>();
-	private static final Map<String, PersonStatus> byValue = new HashMap<>();
+	private static final Map<Integer, Smoker> byId = new HashMap<>();
+	private static final Map<String, Smoker> byValue = new HashMap<>();
 	
 	
 	static {
-	     for (PersonStatus e : PersonStatus.values() ) {
+	     for (Smoker e : Smoker.values() ) {
 	            if (byId.put(e.getId(), e) != null) {
 	                throw new IllegalArgumentException("duplicate id: " + e.getId());
 	            }
 	            
-	            if (byValue.put(e.getValue(), e) != null) {
+	            if (byValue.put(e.getValue() , e) != null) {
 	                throw new IllegalArgumentException("duplicate value: " + e.getValue());
 	            }
 	    }
 	 }
 	
 	
-	public static PersonStatus getById(int id) {
+	public static Smoker getById(int id) {
 	    return byId.get(id);
 	 }
 	 
-	public static PersonStatus getByValue(String value) {
+	public static Smoker getByValue(String value) {
 		    return byValue.get(value);
 	}
-	
-	private int id;
-	
-	private String value;
 
 	/**
 	 * @param id
 	 * @param value
 	 */
-	private PersonStatus(int id, String value) {
+	private Smoker(int id, String value) {
 		this.id = id;
 		this.value = value;
 	}
@@ -64,5 +64,4 @@ public enum PersonStatus {
 	}
 	
 	
-
 }

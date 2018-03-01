@@ -5,11 +5,11 @@ import java.util.Map;
 
 public enum BodyType {
 
-	
-	SLIM(0,"SLIM"),
-	AVERAGE(1,"AVERAGE"),
-	ATHLETIC(2,"ATHLETIC"),
-	HEAVY(3,"HEAVY");
+	NA(0,"NA"),
+	SLIM(1,"SLIM"),
+	AVERAGE(2,"AVERAGE"),
+	ATHLETIC(3,"ATHLETIC"),
+	HEAVY(4,"HEAVY");
 	
 	
 	private static final Map<Integer, BodyType> byId = new HashMap<Integer, BodyType>();

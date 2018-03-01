@@ -17,5 +17,7 @@ public interface FamilyMemberService {
 	public List<FamilyMember> getByName(String name);
 	
 	public FamilyMember save(FamilyMember familyMember);
+	
+	public List<FamilyMember> getByUserName(String name);
 
 }

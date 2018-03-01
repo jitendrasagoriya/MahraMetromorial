@@ -21,7 +21,7 @@ public class CrosFilter extends  OncePerRequestFilter  {
 	    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 	            throws ServletException, IOException {	
 		  
-		  logger.info(" inside jeet  request { } and responce {}" ,request,response);
+		   
 		   
 	        response.setHeader("Access-Control-Allow-Origin", "*");
 	        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");

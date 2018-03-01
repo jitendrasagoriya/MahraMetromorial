@@ -9,15 +9,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Challenged;
 import com.jitendra.mehra.enums.Complexion;
+import com.jitendra.mehra.enums.Drink;
+import com.jitendra.mehra.enums.EatingHabit;
 import com.jitendra.mehra.enums.Gender;
 import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
+import com.jitendra.mehra.enums.Smoker;
 
 @Entity
 @Table(name="PERSON")
@@ -45,7 +47,7 @@ public class Person implements Serializable {
 	@Column(name="LASTENAME",nullable=false,length = 50)
 	private String lName;
 	
-	@Column(name="GENDER",nullable=true,length = 50)
+	@Column(name="GENDER",nullable=true,length = 50,columnDefinition = "int default '0'")
 	private Gender gender;	
 	
 	@Column(name="DATEODBIRTH",nullable=false)
@@ -57,7 +59,7 @@ public class Person implements Serializable {
 	@Column(name="PLACEOFBIRTH",nullable=false,length = 100)
 	private String placeOfBirth;
 	
-	@Column(name="QUALIFICATION",nullable=false)
+	@Column(name="QUALIFICATION",nullable=false,columnDefinition = "int default '0'")
 	private Qualification qualification;
 	
 	@Column(name="RELIGION",nullable=false,length = 50)
@@ -84,22 +86,22 @@ public class Person implements Serializable {
 	@Column(name="CITY",nullable=false,length = 100)
 	private String city;
 	
-	@Column(name="NOOFSISTER",nullable=false)
+	@Column(name="NOOFSISTER",nullable=false ,columnDefinition = "int default '0'")
 	private int noOfSisters;
 	
-	@Column(name="NOOFBROTHER",nullable=false)
+	@Column(name="NOOFBROTHER",nullable=false,columnDefinition = "int default '0'")
 	private int noOfBrother;
 	
 	@Column(name="HEIGHT",nullable=false)
 	private String height;
 	
-	@Column(name="BODYTYPE",nullable=false)
+	@Column(name="BODYTYPE",nullable=false,columnDefinition = "int default '0'")
 	private BodyType bodyType;
 	
-	@Column(name="COMPLEXION",nullable=false)
+	@Column(name="COMPLEXION",nullable=false,columnDefinition = "int default '0'")
 	private Complexion complexion;
 	
-	@Column(name="CHALLENGED",nullable=false)
+	@Column(name="CHALLENGED",nullable=false,columnDefinition = "int default '0'")
 	private Challenged challenged;
 	
 	@Column(name="PRIMERYCONTACTNO",nullable=false)
@@ -108,14 +110,44 @@ public class Person implements Serializable {
 	@Column(name="SECOUNDRYCONTACTNO",nullable=true)
 	private String secoundryContactNo;
 	
-	@Column(name="STATUS",nullable=true)
+	@Column(name="STATUS",nullable=true,columnDefinition = "int default '0'")
 	private PersonStatus personStatus;
 	
 	@Column(name="PROFILEPIC",nullable=true)
 	private String profilePic;	
 	
-	@Column(name="MARITALSTATUS",nullable=true)	 
+	@Column(name="MARITALSTATUS",nullable=true,columnDefinition = "int default '0'")	 
 	private MaritalStatus maritalStatus;
+	
+	@Column(name="WEIGHT",nullable=true)	 
+	private Integer weight;
+	
+	@Column(name="SMOKE",nullable=true,columnDefinition = "int default '0'")	 
+	private Smoker somke;
+	
+	@Column(name="DRINK",nullable=true,columnDefinition = "int default '0'")	 
+	private Drink drink;
+	
+	@Column(name="DOINGJOB",nullable=true ,columnDefinition = "int default 'false'")	 
+	private Boolean doingJob;
+	
+	@Column(name="WISHTOJOB",nullable=true,columnDefinition = "int default 'false'")	 
+	private Boolean wishToJob;
+	
+	@Column(name="COMPANYNAME",nullable=true)	 
+	private String companyName;
+	
+	@Column(name="DESGINATION",nullable=true)	 
+	private String desgination;
+	
+	@Column(name="EATINGHABIT",nullable=true,columnDefinition = "int default '0'")	 
+	private EatingHabit eatingHabit;
+	
+	@Column(name="ABOUTME",nullable=true)	 
+	private String aboutMe;
+	
+	@Column(name="HOBBIES",nullable=true)	 
+	private String hobbies;
 
 	/**
 	 * @return the fName
@@ -531,6 +563,147 @@ public class Person implements Serializable {
 		this.userName = userName;
 	}
 
+	/**
+	 * @return the weight
+	 */
+	public Integer getWeight() {
+		return weight;
+	}
+
+	/**
+	 * @param weight the weight to set
+	 */
+	public void setWeight(Integer weight) {
+		this.weight = weight;
+	}
+	
+
+	/**
+	 * @return the somke
+	 */
+	public Smoker getSomke() {
+		return somke;
+	}
+
+	/**
+	 * @param somke the somke to set
+	 */
+	public void setSomke(Smoker somke) {
+		this.somke = somke;
+	}
+
+	/**
+	 * @return the drink
+	 */
+	public Drink getDrink() {
+		return drink;
+	}
+
+	/**
+	 * @param drink the drink to set
+	 */
+	public void setDrink(Drink drink) {
+		this.drink = drink;
+	}
+
+	/**
+	 * @return the doingJob
+	 */
+	public Boolean getDoingJob() {
+		return doingJob;
+	}
+
+	/**
+	 * @param doingJob the doingJob to set
+	 */
+	public void setDoingJob(Boolean doingJob) {
+		this.doingJob = doingJob;
+	}
+
+	/**
+	 * @return the wishToJob
+	 */
+	public Boolean getWishToJob() {
+		return wishToJob;
+	}
+
+	/**
+	 * @param wishToJob the wishToJob to set
+	 */
+	public void setWishToJob(Boolean wishToJob) {
+		this.wishToJob = wishToJob;
+	}
+
+	/**
+	 * @return the companyName
+	 */
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	/**
+	 * @param companyName the companyName to set
+	 */
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	/**
+	 * @return the desgination
+	 */
+	public String getDesgination() {
+		return desgination;
+	}
+
+	/**
+	 * @param desgination the desgination to set
+	 */
+	public void setDesgination(String desgination) {
+		this.desgination = desgination;
+	}
+
+	/**
+	 * @return the eatingHabit
+	 */
+	public EatingHabit getEatingHabit() {
+		return eatingHabit;
+	}
+
+	/**
+	 * @param eatingHabit the eatingHabit to set
+	 */
+	public void setEatingHabit(EatingHabit eatingHabit) {
+		this.eatingHabit = eatingHabit;
+	}
+
+	/**
+	 * @return the aboutMe
+	 */
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	/**
+	 * @param aboutMe the aboutMe to set
+	 */
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
+	/**
+	 * @return the hobbies
+	 */
+	public String getHobbies() {
+		return hobbies;
+	}
+
+	/**
+	 * @param hobbies the hobbies to set
+	 */
+	public void setHobbies(String hobbies) {
+		this.hobbies = hobbies;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -538,18 +711,25 @@ public class Person implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((aboutMe == null) ? 0 : aboutMe.hashCode());
 		result = prime * result + ((bodyType == null) ? 0 : bodyType.hashCode());
 		result = prime * result + ((cast == null) ? 0 : cast.hashCode());
 		result = prime * result + ((challenged == null) ? 0 : challenged.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((companyName == null) ? 0 : companyName.hashCode());
 		result = prime * result + ((complexion == null) ? 0 : complexion.hashCode());
+		result = prime * result + ((desgination == null) ? 0 : desgination.hashCode());
 		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
+		result = prime * result + ((doingJob == null) ? 0 : doingJob.hashCode());
+		result = prime * result + ((drink == null) ? 0 : drink.hashCode());
+		result = prime * result + ((eatingHabit == null) ? 0 : eatingHabit.hashCode());
 		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
 		result = prime * result + (int) (familyIncome ^ (familyIncome >>> 32));
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
 		result = prime * result + ((gotraToSave == null) ? 0 : gotraToSave.hashCode());
 		result = prime * result + ((height == null) ? 0 : height.hashCode());
+		result = prime * result + ((hobbies == null) ? 0 : hobbies.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + (int) (income ^ (income >>> 32));
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
@@ -565,8 +745,11 @@ public class Person implements Serializable {
 		result = prime * result + ((qualification == null) ? 0 : qualification.hashCode());
 		result = prime * result + ((religion == null) ? 0 : religion.hashCode());
 		result = prime * result + ((secoundryContactNo == null) ? 0 : secoundryContactNo.hashCode());
+		result = prime * result + ((somke == null) ? 0 : somke.hashCode());
 		result = prime * result + ((tob == null) ? 0 : tob.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
+		result = prime * result + ((wishToJob == null) ? 0 : wishToJob.hashCode());
 		return result;
 	}
 
@@ -582,6 +765,11 @@ public class Person implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
+		if (aboutMe == null) {
+			if (other.aboutMe != null)
+				return false;
+		} else if (!aboutMe.equals(other.aboutMe))
+			return false;
 		if (bodyType != other.bodyType)
 			return false;
 		if (cast == null) {
@@ -596,12 +784,31 @@ public class Person implements Serializable {
 				return false;
 		} else if (!city.equals(other.city))
 			return false;
+		if (companyName == null) {
+			if (other.companyName != null)
+				return false;
+		} else if (!companyName.equals(other.companyName))
+			return false;
 		if (complexion != other.complexion)
+			return false;
+		if (desgination == null) {
+			if (other.desgination != null)
+				return false;
+		} else if (!desgination.equals(other.desgination))
 			return false;
 		if (dob == null) {
 			if (other.dob != null)
 				return false;
 		} else if (!dob.equals(other.dob))
+			return false;
+		if (doingJob == null) {
+			if (other.doingJob != null)
+				return false;
+		} else if (!doingJob.equals(other.doingJob))
+			return false;
+		if (drink != other.drink)
+			return false;
+		if (eatingHabit != other.eatingHabit)
 			return false;
 		if (fName == null) {
 			if (other.fName != null)
@@ -626,6 +833,11 @@ public class Person implements Serializable {
 			if (other.height != null)
 				return false;
 		} else if (!height.equals(other.height))
+			return false;
+		if (hobbies == null) {
+			if (other.hobbies != null)
+				return false;
+		} else if (!hobbies.equals(other.hobbies))
 			return false;
 		if (id != other.id)
 			return false;
@@ -681,6 +893,8 @@ public class Person implements Serializable {
 				return false;
 		} else if (!secoundryContactNo.equals(other.secoundryContactNo))
 			return false;
+		if (somke != other.somke)
+			return false;
 		if (tob == null) {
 			if (other.tob != null)
 				return false;
@@ -690,6 +904,16 @@ public class Person implements Serializable {
 			if (other.userName != null)
 				return false;
 		} else if (!userName.equals(other.userName))
+			return false;
+		if (weight == null) {
+			if (other.weight != null)
+				return false;
+		} else if (!weight.equals(other.weight))
+			return false;
+		if (wishToJob == null) {
+			if (other.wishToJob != null)
+				return false;
+		} else if (!wishToJob.equals(other.wishToJob))
 			return false;
 		return true;
 	}
@@ -707,7 +931,10 @@ public class Person implements Serializable {
 				+ ", noOfBrother=" + noOfBrother + ", height=" + height + ", bodyType=" + bodyType + ", complexion="
 				+ complexion + ", challenged=" + challenged + ", primeryContactNo=" + primeryContactNo
 				+ ", secoundryContactNo=" + secoundryContactNo + ", personStatus=" + personStatus + ", profilePic="
-				+ profilePic + ", maritalStatus=" + maritalStatus + "]";
+				+ profilePic + ", maritalStatus=" + maritalStatus + ", weight=" + weight + ", somke=" + somke
+				+ ", drink=" + drink + ", doingJob=" + doingJob + ", wishToJob=" + wishToJob + ", companyName="
+				+ companyName + ", desgination=" + desgination + ", eatingHabit=" + eatingHabit + ", aboutMe=" + aboutMe
+				+ ", hobbies=" + hobbies + "]";
 	}
 	
 	

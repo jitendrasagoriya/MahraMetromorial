@@ -16,5 +16,8 @@ public interface FamilyMemberRepository extends JpaRepository<FamilyMember, Long
 	
 	@Query("SELECT fm FROM FamilyMember fm WHERE fm.name = :name")
 	public List<FamilyMember> getByName(@Param("name") String name);
+	
+	@Query("SELECT fm FROM FamilyMember fm WHERE fm.userName = :userName")
+	public List<FamilyMember> getByUserName(@Param("userName") String userName);
 
 }

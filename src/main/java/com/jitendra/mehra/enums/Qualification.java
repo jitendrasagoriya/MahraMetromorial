@@ -5,10 +5,13 @@ import java.util.Map;
 
 public enum Qualification {
 
-	X(0,"X","10th"),
-	XII(1,"XII","12th"),
-	G(2,"G","graducation"),	
-	PG(3,"PG","Post graducation");
+	NA(0,"NA","Dont want to disclose"),
+	X(1,"X","10th"),
+	XII(2,"XII","12th"),
+	G(3,"G","graducation"),	
+	PG(4,"PG","Post graducation"),
+	DEPLOMAG(5,"DEPLOMA","Deploma after graducation"),
+	DEPLOMAPG(6,"DEPLOMAPG","Deploma after Post graducation");
 	
 	
 	private static final Map<Integer, Qualification> byId = new HashMap<>();

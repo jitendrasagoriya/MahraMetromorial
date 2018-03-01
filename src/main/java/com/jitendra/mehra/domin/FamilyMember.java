@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.jitendra.mehra.enums.MotherOccupation;
 import com.jitendra.mehra.enums.Relation;
 
 @Entity
@@ -28,6 +29,9 @@ public class FamilyMember implements Serializable {
 	@Column(name="PERSONID", nullable = false)
 	private Long personId;
 	
+	@Column(name="USERNAME", nullable = false)
+	private String userName;
+	
 	@Column(name="NAME", nullable = false)
 	private String name;
 	
@@ -36,6 +40,15 @@ public class FamilyMember implements Serializable {
 	
 	@Column(name="DOB", nullable = false)
 	private Date dob;
+	
+	@Column(name="GOTRA", nullable = false)
+	private String gotra;
+	
+	@Column(name="OCCUPATION", nullable = false)
+	private MotherOccupation occupation;
+	
+	@Column(name="SALARY", nullable = true)
+	private String salary;
 
 	/**
 	 * @return the id
@@ -110,6 +123,62 @@ public class FamilyMember implements Serializable {
 	}
 
 	
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * @return the gotra
+	 */
+	public String getGotra() {
+		return gotra;
+	}
+
+	/**
+	 * @param gotra the gotra to set
+	 */
+	public void setGotra(String gotra) {
+		this.gotra = gotra;
+	}
+
+	/**
+	 * @return the occupation
+	 */
+	public MotherOccupation getOccupation() {
+		return occupation;
+	}
+
+	/**
+	 * @param occupation the occupation to set
+	 */
+	public void setOccupation(MotherOccupation occupation) {
+		this.occupation = occupation;
+	}
+
+	/**
+	 * @return the salary
+	 */
+	public String getSalary() {
+		return salary;
+	}
+
+	/**
+	 * @param salary the salary to set
+	 */
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
