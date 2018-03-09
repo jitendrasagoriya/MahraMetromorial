@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,18 @@ public class ProfileEndpoint {
 		Profile profile = new Profile();
 		Person person = personService.getById( user.getName() );
 		Set<FamilyMember> familyMembers = new HashSet<>( familyMemberService.getByUserName(user.getName() ) );
+		profile.setFamilyMembers(familyMembers);
+		profile.setPerson(person);
+		return  new ResponseEntity<Profile>( profile,HttpStatus.OK ) ;
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(path = "/{name}", method = RequestMethod.GET)
+	public ResponseEntity<Profile>  viewProfile(@AuthenticationPrincipal Principal user, @PathVariable(name="name") String userName ){
+		logger.info("view : {}" ,userName);
+		Profile profile = new Profile();
+		Person person = personService.getById( userName );
+		Set<FamilyMember> familyMembers = new HashSet<>( familyMemberService.getByUserName(person.getUserName() ) );
 		profile.setFamilyMembers(familyMembers);
 		profile.setPerson(person);
 		return  new ResponseEntity<Profile>( profile,HttpStatus.OK ) ;
