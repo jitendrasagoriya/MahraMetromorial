@@ -1,5 +1,6 @@
 package com.jitendra.mehra.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,5 +20,7 @@ public interface FamilyMemberService {
 	public FamilyMember save(FamilyMember familyMember);
 	
 	public List<FamilyMember> getByUserName(String name);
+	
+	public List<FamilyMember> save(Collection<FamilyMember> familyMembers);
 
 }

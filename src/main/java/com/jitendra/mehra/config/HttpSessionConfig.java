@@ -6,7 +6,6 @@ import org.springframework.session.ExpiringSession;
 import org.springframework.session.MapSessionRepository;
 import org.springframework.session.SessionRepository;
 import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
-import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
 
 @Configuration
@@ -20,6 +19,6 @@ public class HttpSessionConfig {
 
 	@Bean
 	HttpSessionStrategy httpSessionStrategy() {
-		return new HeaderHttpSessionStrategy();
+		return new com.jitendra.mehra.config.HttpSessionStrategy();
 	}
 }

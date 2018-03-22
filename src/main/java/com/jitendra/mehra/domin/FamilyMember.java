@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.jitendra.mehra.enums.MotherOccupation;
 import com.jitendra.mehra.enums.Relation;
@@ -49,6 +50,9 @@ public class FamilyMember implements Serializable {
 	
 	@Column(name="SALARY", nullable = true)
 	private String salary;
+	
+	@Transient
+	private Boolean isEdit;
 
 	/**
 	 * @return the id
@@ -177,6 +181,20 @@ public class FamilyMember implements Serializable {
 	 */
 	public void setSalary(String salary) {
 		this.salary = salary;
+	}
+
+	/**
+	 * @return the isEdit
+	 */
+	public Boolean getIsEdit() {
+		return isEdit;
+	}
+
+	/**
+	 * @param isEdit the isEdit to set
+	 */
+	public void setIsEdit(Boolean isEdit) {
+		this.isEdit = isEdit;
 	}
 
 	/* (non-Javadoc)

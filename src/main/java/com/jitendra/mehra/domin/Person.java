@@ -32,7 +32,7 @@ public class Person implements Serializable {
 	
 	@Column(name="ID",nullable=true,unique = true)
 	@GeneratedValue(strategy = GenerationType.AUTO )
-	private long id;
+	private Long id;
 	
 	@Id
 	@Column(name="USERNAME",nullable=true,length = 50,unique = true)

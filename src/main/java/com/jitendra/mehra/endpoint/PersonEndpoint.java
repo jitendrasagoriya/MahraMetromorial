@@ -3,6 +3,8 @@ package com.jitendra.mehra.endpoint;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +109,16 @@ public class PersonEndpoint {
 	public ResponseEntity<Boolean> setProfilePic(@AuthenticationPrincipal Principal user,@RequestParam("picname") String name){
 		int i = personService.setProfilePic( user.getName(), name);
 		return new ResponseEntity< Boolean>( i>0?true:false ,HttpStatus.OK);		
+	}
+	
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(path = "/logout", method = RequestMethod.GET)
+	public void sessionInvalidate(HttpSession session) {
+		logger.info("sessionInvalidate: {}", session.getAttributeNames());
+		logger.info(" CreationTime: {}", session.getCreationTime());
+		
+		session.invalidate(); 
 	}
 
 }

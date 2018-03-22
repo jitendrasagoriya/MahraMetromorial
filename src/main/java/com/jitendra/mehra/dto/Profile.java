@@ -1,6 +1,10 @@
-package com.jitendra.mehra.domin;
+package com.jitendra.mehra.dto;
 
 import java.util.Set;
+
+import com.jitendra.mehra.domin.FamilyMember;
+import com.jitendra.mehra.domin.Person;
+import com.jitendra.mehra.domin.User;
 
 public class Profile {
 
@@ -102,6 +106,8 @@ public class Profile {
 	public String toString() {
 		return "Profile [user=" + user + ", person=" + person + ", familyMembers=" + familyMembers + "]";
 	}
+	
+	
 	
 	
 }

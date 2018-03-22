@@ -8,8 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.savedrequest.NullRequestCache;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
@@ -29,7 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Autowired
     private FacebookConnectionSignup facebookConnectionSignup;
-	
+    
+    
 	
 	@Autowired
 	DataSource dataSource;
@@ -49,7 +52,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and().httpBasic() //
 		.and().csrf().disable();
 		
-		http.headers().frameOptions().disable();		
+		http.headers().frameOptions().disable();
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+		 
+		 
+		
 		 
 	}
 
@@ -59,9 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.dataSource(dataSource)
 			.usersByUsernameQuery("select username,password, enabled from users where username=?")
 			.authoritiesByUsernameQuery("select username, role from user_roles where username=?");//
+		 
 	}
-	
-	
 	
 	@Bean
     public ProviderSignInController providerSignInController() {
@@ -73,5 +79,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           usersConnectionRepository, 
           new FacebookSignInAdapter());
     }
-
+	
+	
 }

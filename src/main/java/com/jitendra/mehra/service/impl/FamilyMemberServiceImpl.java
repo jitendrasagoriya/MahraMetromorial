@@ -1,5 +1,6 @@
 package com.jitendra.mehra.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,6 +43,11 @@ public class FamilyMemberServiceImpl implements FamilyMemberService {
 	@Override
 	public List<FamilyMember> getByUserName(String name) {
 		return repository.getByUserName(name);
+	}
+
+	@Override
+	public List<FamilyMember> save(Collection<FamilyMember> familyMembers) {		
+		return repository.save(familyMembers);		 
 	}
 
 }
