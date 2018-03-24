@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jitendra.mehra.domin.FamilyMember;
 import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.domin.UserRoles;
 import com.jitendra.mehra.enums.BodyType;
@@ -22,9 +23,11 @@ import com.jitendra.mehra.enums.Complexion;
 import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
+import com.jitendra.mehra.enums.Relation;
 import com.jitendra.mehra.repository.PersonRepository;
 import com.jitendra.mehra.repository.UserRolesRepository;
 import com.jitendra.mehra.search.Search;
+import com.jitendra.mehra.service.FamilyMemberService;
 import com.jitendra.mehra.service.PersonService;
 import com.jitendra.mehra.utils.DateUtility;
 
@@ -43,6 +46,8 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	private UserRolesRepository userRolesRepository;
 
+	@Autowired
+	private FamilyMemberService familyMemberService;
 	
 
 	@Override
@@ -184,6 +189,27 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public int setProfilePic(String username, String name) {
 		return personRepository.setProfilePic(username, name);
+	}
+
+	@Override
+	public Person createPerson(Person person) {
+		Person temp = new Person();
+		temp = this.save(person);
+		
+		FamilyMember father = new FamilyMember();
+		father.setPersonId(temp.getId());
+		father.setUserName(temp.getUserName());
+		father.setRelation(Relation.FATHER);
+		
+		
+		FamilyMember mother = new FamilyMember();
+		mother.setPersonId(temp.getId());
+		mother.setUserName(temp.getUserName());
+		mother.setRelation(Relation.FATHER);
+
+		familyMemberService.save(Arrays.asList(father,mother));
+		 
+		return temp;
 	}
 
 	 

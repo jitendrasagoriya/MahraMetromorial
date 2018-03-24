@@ -22,5 +22,21 @@ public interface FamilyMemberService {
 	public List<FamilyMember> getByUserName(String name);
 	
 	public List<FamilyMember> save(Collection<FamilyMember> familyMembers);
+	
+	public FamilyMember getFather(String name);
+	
+	public FamilyMember getMother(String name);
+	
+	public int getSibilingCount(String name);
+	
+	public List<FamilyMember> getBrother(String name);
+	
+	public List<FamilyMember> getSister(String name);
+	
+	public Integer getBrotherCount(String name);
+	
+	public Integer getSisterCount(String name);
+	
+	public List<FamilyMember> getSibilings(String name);
 
 }

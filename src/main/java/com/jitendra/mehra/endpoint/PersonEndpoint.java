@@ -63,7 +63,7 @@ public class PersonEndpoint {
 		logger.info("add : {}", person);
 		logger.info("user Name : {}", user.getName());
 		person.setUserName(user.getName());
-		return new ResponseEntity<Person>(  personService.save(person),HttpStatus.OK);		
+		return new ResponseEntity<Person>(  personService.createPerson(person),HttpStatus.OK);		
 	}
 	
 	@Secured("ROLE_USER")

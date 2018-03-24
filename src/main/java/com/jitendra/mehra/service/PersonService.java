@@ -36,6 +36,8 @@ public interface PersonService {
 	
 	public int setProfilePic(String username,String name);
 	
+	public Person createPerson(Person person);	
+	
 	/**
 	 * 
 	 * new PageRequest(1, 

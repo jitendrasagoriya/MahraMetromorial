@@ -17,6 +17,7 @@ import com.jitendra.mehra.enums.Drink;
 import com.jitendra.mehra.enums.EatingHabit;
 import com.jitendra.mehra.enums.Gender;
 import com.jitendra.mehra.enums.MaritalStatus;
+import com.jitendra.mehra.enums.Occupation;
 import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
 import com.jitendra.mehra.enums.Smoker;
@@ -149,6 +150,9 @@ public class Person implements Serializable {
 	@Column(name="HOBBIES",nullable=true)	 
 	private String hobbies;
 
+	@Column(name="OCCUPATION",nullable=true)
+	private Occupation occupation;
+	
 	/**
 	 * @return the fName
 	 */
@@ -704,6 +708,28 @@ public class Person implements Serializable {
 		this.hobbies = hobbies;
 	}
 
+	
+	/**
+	 * @return the occupation
+	 */
+	public Occupation getOccupation() {
+		return occupation;
+	}
+
+	/**
+	 * @param occupation the occupation to set
+	 */
+	public void setOccupation(Occupation occupation) {
+		this.occupation = occupation;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -730,7 +756,7 @@ public class Person implements Serializable {
 		result = prime * result + ((gotraToSave == null) ? 0 : gotraToSave.hashCode());
 		result = prime * result + ((height == null) ? 0 : height.hashCode());
 		result = prime * result + ((hobbies == null) ? 0 : hobbies.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (int) (income ^ (income >>> 32));
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
 		result = prime * result + ((mName == null) ? 0 : mName.hashCode());
@@ -738,6 +764,7 @@ public class Person implements Serializable {
 		result = prime * result + ((nameOfCollage == null) ? 0 : nameOfCollage.hashCode());
 		result = prime * result + noOfBrother;
 		result = prime * result + noOfSisters;
+		result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
 		result = prime * result + ((personStatus == null) ? 0 : personStatus.hashCode());
 		result = prime * result + ((placeOfBirth == null) ? 0 : placeOfBirth.hashCode());
 		result = prime * result + ((primeryContactNo == null) ? 0 : primeryContactNo.hashCode());
@@ -839,7 +866,10 @@ public class Person implements Serializable {
 				return false;
 		} else if (!hobbies.equals(other.hobbies))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (income != other.income)
 			return false;
@@ -863,6 +893,8 @@ public class Person implements Serializable {
 		if (noOfBrother != other.noOfBrother)
 			return false;
 		if (noOfSisters != other.noOfSisters)
+			return false;
+		if (occupation != other.occupation)
 			return false;
 		if (personStatus != other.personStatus)
 			return false;
@@ -934,7 +966,7 @@ public class Person implements Serializable {
 				+ profilePic + ", maritalStatus=" + maritalStatus + ", weight=" + weight + ", somke=" + somke
 				+ ", drink=" + drink + ", doingJob=" + doingJob + ", wishToJob=" + wishToJob + ", companyName="
 				+ companyName + ", desgination=" + desgination + ", eatingHabit=" + eatingHabit + ", aboutMe=" + aboutMe
-				+ ", hobbies=" + hobbies + "]";
+				+ ", hobbies=" + hobbies + ", occupation=" + occupation + "]";
 	}
 	
 	

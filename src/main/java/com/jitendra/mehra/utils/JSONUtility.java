@@ -1,20 +1,17 @@
 package com.jitendra.mehra.utils;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jitendra.mehra.domin.Request;
-import com.jitendra.mehra.domin.RequestAndLikeIdenntity;
 import com.jitendra.mehra.dto.MultiPropertyRequest;
 import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
-import com.jitendra.mehra.enums.RequestStatus;
 
 public class JSONUtility {
 	
@@ -28,17 +25,52 @@ public class JSONUtility {
 			
 			 jsonInString = mapper.writeValueAsString(object);
 		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 e.printStackTrace();
 		}
 		return  jsonInString;
 		
+	}
+	
+	
+	public static Map<String, Object> jsonToMap(String jsonString){
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		try {
+
+			ObjectMapper mapper = new ObjectMapper();		
+			// convert JSON string to Map
+			map = mapper.readValue(jsonString, new TypeReference<Map<String, String>>(){});			  
+
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return map;
+	
+	}
+	
+	public static String jsonToMap(Map<String, Object> map){
+		String json = ""; 
+		try {
+
+			ObjectMapper mapper = new ObjectMapper();
+			json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);		 
+
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return json;
 	}
 	
 	public static void main(String[] args) {

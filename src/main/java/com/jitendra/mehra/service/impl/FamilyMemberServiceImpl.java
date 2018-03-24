@@ -1,5 +1,6 @@
 package com.jitendra.mehra.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -48,6 +49,49 @@ public class FamilyMemberServiceImpl implements FamilyMemberService {
 	@Override
 	public List<FamilyMember> save(Collection<FamilyMember> familyMembers) {		
 		return repository.save(familyMembers);		 
+	}
+
+	@Override
+	public FamilyMember getFather(String name) {		 
+		return repository.getFather(name);
+	}
+
+	@Override
+	public FamilyMember getMother(String name) {
+		return repository.getMother(name);
+	}
+
+	@Override
+	public int getSibilingCount(String name) {
+		return repository.getSibilingCount(name);
+	}
+
+	@Override
+	public List<FamilyMember> getBrother(String name) {
+		return repository.getBrother(name);
+	}
+
+	@Override
+	public List<FamilyMember> getSister(String name) {
+		return repository.getSister(name);
+	}
+
+	@Override
+	public Integer getBrotherCount(String name) {
+		return repository.getBrother(name).size();
+	}
+
+	@Override
+	public Integer getSisterCount(String name) {
+		return repository.getSister(name).size();
+	}
+
+	@Override
+	public List<FamilyMember> getSibilings(String name) {
+		List<FamilyMember> sibilings = new ArrayList<>();
+		sibilings.addAll( this.getSister(name));
+		sibilings.addAll( this.getBrother(name));
+		return sibilings;
 	}
 
 }

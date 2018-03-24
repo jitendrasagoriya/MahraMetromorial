@@ -18,9 +18,6 @@ import com.jitendra.mehra.enums.Relation;
 @Table(name="FAMILYMEMBER")
 public class FamilyMember implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -33,19 +30,19 @@ public class FamilyMember implements Serializable {
 	@Column(name="USERNAME", nullable = false)
 	private String userName;
 	
-	@Column(name="NAME", nullable = false)
+	@Column(name="NAME", nullable = true)
 	private String name;
 	
 	@Column(name="RELATION", nullable = false)
 	private Relation relation;
 	
-	@Column(name="DOB", nullable = false)
+	@Column(name="DOB", nullable = true)
 	private Date dob;
 	
-	@Column(name="GOTRA", nullable = false)
+	@Column(name="GOTRA", nullable = true)
 	private String gotra;
 	
-	@Column(name="OCCUPATION", nullable = false)
+	@Column(name="OCCUPATION", nullable = true)
 	private MotherOccupation occupation;
 	
 	@Column(name="SALARY", nullable = true)

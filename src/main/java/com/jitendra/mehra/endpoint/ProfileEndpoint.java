@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.mehra.domin.FamilyMember;
 import com.jitendra.mehra.dto.MultiPropertyRequest;
+import com.jitendra.mehra.dto.PersonalDetail;
 import com.jitendra.mehra.dto.Profile;
 import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
 import com.jitendra.mehra.service.ProfileService;
@@ -54,6 +55,8 @@ public class ProfileEndpoint {
 		Profile profile = profileService.get(userName); 
 		return  new ResponseEntity<Profile>( profile,HttpStatus.OK ) ;
 	}
+	
+	
 	
 	
 	@Secured("ROLE_USER")
