@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +39,7 @@ public class FamilyMemberEndpoint {
 	@Autowired
 	private FamilyMemberService familyMemberService;
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(path="/{id}",method = RequestMethod.GET)
 	public ResponseEntity<FamilyMember> getMemmderById(@PathVariable(name = "id" , required = true) Long id){
 		logger.debug("getMemmderById : {}", id);
@@ -60,6 +62,12 @@ public class FamilyMemberEndpoint {
 	public ResponseEntity<FamilyMember> add(@RequestBody FamilyMember familyMember ){
 		logger.debug("add : {}", familyMember);
 		return new ResponseEntity<FamilyMember>(  familyMemberService.save(familyMember),HttpStatus.OK);
+	}
+	
+	@RequestMapping(path="/self",method = RequestMethod.GET)
+	public ResponseEntity<List<FamilyMember>> getMemmders(@AuthenticationPrincipal Principal user){
+		logger.debug("getMemmderByName : {}", user.getName());
+		return  new ResponseEntity<List<FamilyMember>>( familyMemberService.getByUserName(user.getName()),HttpStatus.OK);
 	}
 	
 	@RequestMapping(path="/father",method = RequestMethod.GET)

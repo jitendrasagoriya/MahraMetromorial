@@ -15,6 +15,9 @@ import com.jitendra.mehra.enums.Challenged;
 import com.jitendra.mehra.enums.Complexion;
 import com.jitendra.mehra.enums.Drink;
 import com.jitendra.mehra.enums.EatingHabit;
+import com.jitendra.mehra.enums.FamilyStatus;
+import com.jitendra.mehra.enums.FamilyType;
+import com.jitendra.mehra.enums.FamilyValues;
 import com.jitendra.mehra.enums.Gender;
 import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.Occupation;
@@ -93,6 +96,12 @@ public class Person implements Serializable {
 	@Column(name="NOOFBROTHER",nullable=false,columnDefinition = "int default '0'")
 	private int noOfBrother;
 	
+	@Column(name="NOOFMARRIEDSISTER",nullable=false ,columnDefinition = "int default '0'")
+	private int noOfMarriedSisters;
+	
+	@Column(name="NOOFMARRIEDBROTHER",nullable=false,columnDefinition = "int default '0'")
+	private int noOfMarriedBrother;
+	
 	@Column(name="HEIGHT",nullable=false)
 	private String height;
 	
@@ -151,7 +160,25 @@ public class Person implements Serializable {
 	private String hobbies;
 
 	@Column(name="OCCUPATION",nullable=true)
-	private Occupation occupation;
+	private Occupation occupation;	
+	
+	@Column(name="FAMILYSTATUS",nullable=true)
+	private FamilyStatus familyStatus;
+	
+	@Column(name="FAMILYVALUES",nullable=true)
+	private FamilyValues familyValues;
+	
+	@Column(name="FAMILYTYPE",nullable=true)
+	private FamilyType familyType;
+	
+	@Column(name="ABOUTFAMILY",nullable=true,length = 200)	 
+	private String aboutFamily;
+	
+	@Column(name="ABOUTJOB",nullable=true,length = 200)	 
+	private String aboutJob;
+	
+	@Column(name="ABOUTPARTNER",nullable=true,length = 200)	 
+	private String aboutPartner;
 	
 	/**
 	 * @return the fName
@@ -730,6 +757,118 @@ public class Person implements Serializable {
 		this.id = id;
 	}
 
+	/**
+	 * @return the noOfMarriedSisters
+	 */
+	public int getNoOfMarriedSisters() {
+		return noOfMarriedSisters;
+	}
+
+	/**
+	 * @param noOfMarriedSisters the noOfMarriedSisters to set
+	 */
+	public void setNoOfMarriedSisters(int noOfMarriedSisters) {
+		this.noOfMarriedSisters = noOfMarriedSisters;
+	}
+
+	/**
+	 * @return the noOfMarriedBrother
+	 */
+	public int getNoOfMarriedBrother() {
+		return noOfMarriedBrother;
+	}
+
+	/**
+	 * @param noOfMarriedBrother the noOfMarriedBrother to set
+	 */
+	public void setNoOfMarriedBrother(int noOfMarriedBrother) {
+		this.noOfMarriedBrother = noOfMarriedBrother;
+	}
+
+	/**
+	 * @return the familyStatus
+	 */
+	public FamilyStatus getFamilyStatus() {
+		return familyStatus;
+	}
+
+	/**
+	 * @param familyStatus the familyStatus to set
+	 */
+	public void setFamilyStatus(FamilyStatus familyStatus) {
+		this.familyStatus = familyStatus;
+	}
+
+	/**
+	 * @return the familyValues
+	 */
+	public FamilyValues getFamilyValues() {
+		return familyValues;
+	}
+
+	/**
+	 * @param familyValues the familyValues to set
+	 */
+	public void setFamilyValues(FamilyValues familyValues) {
+		this.familyValues = familyValues;
+	}
+
+	/**
+	 * @return the familyType
+	 */
+	public FamilyType getFamilyType() {
+		return familyType;
+	}
+
+	/**
+	 * @param familyType the familyType to set
+	 */
+	public void setFamilyType(FamilyType familyType) {
+		this.familyType = familyType;
+	}
+
+	/**
+	 * @return the aboutFamily
+	 */
+	public String getAboutFamily() {
+		return aboutFamily;
+	}
+
+	/**
+	 * @param aboutFamily the aboutFamily to set
+	 */
+	public void setAboutFamily(String aboutFamily) {
+		this.aboutFamily = aboutFamily;
+	}
+
+	/**
+	 * @return the aboutJob
+	 */
+	public String getAboutJob() {
+		return aboutJob;
+	}
+
+	/**
+	 * @param aboutJob the aboutJob to set
+	 */
+	public void setAboutJob(String aboutJob) {
+		this.aboutJob = aboutJob;
+	}
+
+	/**
+	 * @return the aboutPartner
+	 */
+	public String getAboutPartner() {
+		return aboutPartner;
+	}
+
+	/**
+	 * @param aboutPartner the aboutPartner to set
+	 */
+	public void setAboutPartner(String aboutPartner) {
+		this.aboutPartner = aboutPartner;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -737,7 +876,10 @@ public class Person implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((aboutFamily == null) ? 0 : aboutFamily.hashCode());
+		result = prime * result + ((aboutJob == null) ? 0 : aboutJob.hashCode());
 		result = prime * result + ((aboutMe == null) ? 0 : aboutMe.hashCode());
+		result = prime * result + ((aboutPartner == null) ? 0 : aboutPartner.hashCode());
 		result = prime * result + ((bodyType == null) ? 0 : bodyType.hashCode());
 		result = prime * result + ((cast == null) ? 0 : cast.hashCode());
 		result = prime * result + ((challenged == null) ? 0 : challenged.hashCode());
@@ -751,6 +893,9 @@ public class Person implements Serializable {
 		result = prime * result + ((eatingHabit == null) ? 0 : eatingHabit.hashCode());
 		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
 		result = prime * result + (int) (familyIncome ^ (familyIncome >>> 32));
+		result = prime * result + ((familyStatus == null) ? 0 : familyStatus.hashCode());
+		result = prime * result + ((familyType == null) ? 0 : familyType.hashCode());
+		result = prime * result + ((familyValues == null) ? 0 : familyValues.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
 		result = prime * result + ((gotraToSave == null) ? 0 : gotraToSave.hashCode());
@@ -763,6 +908,8 @@ public class Person implements Serializable {
 		result = prime * result + ((maritalStatus == null) ? 0 : maritalStatus.hashCode());
 		result = prime * result + ((nameOfCollage == null) ? 0 : nameOfCollage.hashCode());
 		result = prime * result + noOfBrother;
+		result = prime * result + noOfMarriedBrother;
+		result = prime * result + noOfMarriedSisters;
 		result = prime * result + noOfSisters;
 		result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
 		result = prime * result + ((personStatus == null) ? 0 : personStatus.hashCode());
@@ -792,10 +939,25 @@ public class Person implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
+		if (aboutFamily == null) {
+			if (other.aboutFamily != null)
+				return false;
+		} else if (!aboutFamily.equals(other.aboutFamily))
+			return false;
+		if (aboutJob == null) {
+			if (other.aboutJob != null)
+				return false;
+		} else if (!aboutJob.equals(other.aboutJob))
+			return false;
 		if (aboutMe == null) {
 			if (other.aboutMe != null)
 				return false;
 		} else if (!aboutMe.equals(other.aboutMe))
+			return false;
+		if (aboutPartner == null) {
+			if (other.aboutPartner != null)
+				return false;
+		} else if (!aboutPartner.equals(other.aboutPartner))
 			return false;
 		if (bodyType != other.bodyType)
 			return false;
@@ -844,6 +1006,12 @@ public class Person implements Serializable {
 			return false;
 		if (familyIncome != other.familyIncome)
 			return false;
+		if (familyStatus != other.familyStatus)
+			return false;
+		if (familyType != other.familyType)
+			return false;
+		if (familyValues != other.familyValues)
+			return false;
 		if (gender != other.gender)
 			return false;
 		if (gotra == null) {
@@ -891,6 +1059,10 @@ public class Person implements Serializable {
 		} else if (!nameOfCollage.equals(other.nameOfCollage))
 			return false;
 		if (noOfBrother != other.noOfBrother)
+			return false;
+		if (noOfMarriedBrother != other.noOfMarriedBrother)
+			return false;
+		if (noOfMarriedSisters != other.noOfMarriedSisters)
 			return false;
 		if (noOfSisters != other.noOfSisters)
 			return false;
@@ -960,13 +1132,16 @@ public class Person implements Serializable {
 				+ ", qualification=" + qualification + ", religion=" + religion + ", cast=" + cast + ", gotra=" + gotra
 				+ ", gotraToSave=" + gotraToSave + ", nameOfCollage=" + nameOfCollage + ", income=" + income
 				+ ", familyIncome=" + familyIncome + ", city=" + city + ", noOfSisters=" + noOfSisters
-				+ ", noOfBrother=" + noOfBrother + ", height=" + height + ", bodyType=" + bodyType + ", complexion="
-				+ complexion + ", challenged=" + challenged + ", primeryContactNo=" + primeryContactNo
+				+ ", noOfBrother=" + noOfBrother + ", noOfMarriedSisters=" + noOfMarriedSisters
+				+ ", noOfMarriedBrother=" + noOfMarriedBrother + ", height=" + height + ", bodyType=" + bodyType
+				+ ", complexion=" + complexion + ", challenged=" + challenged + ", primeryContactNo=" + primeryContactNo
 				+ ", secoundryContactNo=" + secoundryContactNo + ", personStatus=" + personStatus + ", profilePic="
 				+ profilePic + ", maritalStatus=" + maritalStatus + ", weight=" + weight + ", somke=" + somke
 				+ ", drink=" + drink + ", doingJob=" + doingJob + ", wishToJob=" + wishToJob + ", companyName="
 				+ companyName + ", desgination=" + desgination + ", eatingHabit=" + eatingHabit + ", aboutMe=" + aboutMe
-				+ ", hobbies=" + hobbies + ", occupation=" + occupation + "]";
+				+ ", hobbies=" + hobbies + ", occupation=" + occupation + ", familyStatus=" + familyStatus
+				+ ", familyValues=" + familyValues + ", familyType=" + familyType + ", aboutFamily=" + aboutFamily
+				+ ", aboutJob=" + aboutJob + ", aboutPartner=" + aboutPartner + "]";
 	}
 	
 	
