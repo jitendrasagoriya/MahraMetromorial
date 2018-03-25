@@ -42,6 +42,9 @@ public class FamilyMember implements Serializable {
 	@Column(name="GOTRA", nullable = true)
 	private String gotra;
 	
+	@Column(name="FAMILYGOTRA", nullable = true)
+	private String familyGotra;
+	
 	@Column(name="OCCUPATION", nullable = true)
 	private MotherOccupation occupation;
 	
@@ -194,6 +197,20 @@ public class FamilyMember implements Serializable {
 		this.isEdit = isEdit;
 	}
 
+	/**
+	 * @return the familyGotra
+	 */
+	public String getFamilyGotra() {
+		return familyGotra;
+	}
+
+	/**
+	 * @param familyGotra the familyGotra to set
+	 */
+	public void setFamilyGotra(String familyGotra) {
+		this.familyGotra = familyGotra;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -202,10 +219,16 @@ public class FamilyMember implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
+		result = prime * result + ((familyGotra == null) ? 0 : familyGotra.hashCode());
+		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((isEdit == null) ? 0 : isEdit.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
 		result = prime * result + ((personId == null) ? 0 : personId.hashCode());
 		result = prime * result + ((relation == null) ? 0 : relation.hashCode());
+		result = prime * result + ((salary == null) ? 0 : salary.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 
@@ -226,15 +249,32 @@ public class FamilyMember implements Serializable {
 				return false;
 		} else if (!dob.equals(other.dob))
 			return false;
+		if (familyGotra == null) {
+			if (other.familyGotra != null)
+				return false;
+		} else if (!familyGotra.equals(other.familyGotra))
+			return false;
+		if (gotra == null) {
+			if (other.gotra != null)
+				return false;
+		} else if (!gotra.equals(other.gotra))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (isEdit == null) {
+			if (other.isEdit != null)
+				return false;
+		} else if (!isEdit.equals(other.isEdit))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (occupation != other.occupation)
 			return false;
 		if (personId == null) {
 			if (other.personId != null)
@@ -242,6 +282,16 @@ public class FamilyMember implements Serializable {
 		} else if (!personId.equals(other.personId))
 			return false;
 		if (relation != other.relation)
+			return false;
+		if (salary == null) {
+			if (other.salary != null)
+				return false;
+		} else if (!salary.equals(other.salary))
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
 	}
@@ -251,8 +301,9 @@ public class FamilyMember implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "FamilyMember [id=" + id + ", personId=" + personId + ", name=" + name + ", relation=" + relation
-				+ ", dob=" + dob + "]";
+		return "FamilyMember [id=" + id + ", personId=" + personId + ", userName=" + userName + ", name=" + name
+				+ ", relation=" + relation + ", dob=" + dob + ", gotra=" + gotra + ", familyGotra=" + familyGotra
+				+ ", occupation=" + occupation + ", salary=" + salary + ", isEdit=" + isEdit + "]";
 	}
 	
 	

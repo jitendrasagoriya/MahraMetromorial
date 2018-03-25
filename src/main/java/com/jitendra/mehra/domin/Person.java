@@ -180,6 +180,18 @@ public class Person implements Serializable {
 	@Column(name="ABOUTPARTNER",nullable=true,length = 200)	 
 	private String aboutPartner;
 	
+	@Column(name="LIVINGWITHPARANTS",nullable=true )	
+	private Boolean livingWithParant;
+	
+	@Column(name="FOODANDCOOK",nullable=true ,length = 200 )
+	private String foodAndCook;
+	
+	@Column(name="INTEREST",nullable=true )
+	private String interest ;
+	
+	@Column(name="EMAIL",nullable=true )
+	private String email ;
+	
 	/**
 	 * @return the fName
 	 */
@@ -869,6 +881,62 @@ public class Person implements Serializable {
 		this.aboutPartner = aboutPartner;
 	}
 
+	/**
+	 * @return the livingWithParant
+	 */
+	public Boolean getLivingWithParant() {
+		return livingWithParant;
+	}
+
+	/**
+	 * @param livingWithParant the livingWithParant to set
+	 */
+	public void setLivingWithParant(Boolean livingWithParant) {
+		this.livingWithParant = livingWithParant;
+	}
+
+	/**
+	 * @return the foodAndCook
+	 */
+	public String getFoodAndCook() {
+		return foodAndCook;
+	}
+
+	/**
+	 * @param foodAndCook the foodAndCook to set
+	 */
+	public void setFoodAndCook(String foodAndCook) {
+		this.foodAndCook = foodAndCook;
+	}
+
+	/**
+	 * @return the interest
+	 */
+	public String getInterest() {
+		return interest;
+	}
+
+	/**
+	 * @param interest the interest to set
+	 */
+	public void setInterest(String interest) {
+		this.interest = interest;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -891,11 +959,13 @@ public class Person implements Serializable {
 		result = prime * result + ((doingJob == null) ? 0 : doingJob.hashCode());
 		result = prime * result + ((drink == null) ? 0 : drink.hashCode());
 		result = prime * result + ((eatingHabit == null) ? 0 : eatingHabit.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((fName == null) ? 0 : fName.hashCode());
 		result = prime * result + (int) (familyIncome ^ (familyIncome >>> 32));
 		result = prime * result + ((familyStatus == null) ? 0 : familyStatus.hashCode());
 		result = prime * result + ((familyType == null) ? 0 : familyType.hashCode());
 		result = prime * result + ((familyValues == null) ? 0 : familyValues.hashCode());
+		result = prime * result + ((foodAndCook == null) ? 0 : foodAndCook.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
 		result = prime * result + ((gotraToSave == null) ? 0 : gotraToSave.hashCode());
@@ -903,7 +973,9 @@ public class Person implements Serializable {
 		result = prime * result + ((hobbies == null) ? 0 : hobbies.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (int) (income ^ (income >>> 32));
+		result = prime * result + ((interest == null) ? 0 : interest.hashCode());
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
+		result = prime * result + ((livingWithParant == null) ? 0 : livingWithParant.hashCode());
 		result = prime * result + ((mName == null) ? 0 : mName.hashCode());
 		result = prime * result + ((maritalStatus == null) ? 0 : maritalStatus.hashCode());
 		result = prime * result + ((nameOfCollage == null) ? 0 : nameOfCollage.hashCode());
@@ -999,6 +1071,11 @@ public class Person implements Serializable {
 			return false;
 		if (eatingHabit != other.eatingHabit)
 			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (fName == null) {
 			if (other.fName != null)
 				return false;
@@ -1011,6 +1088,11 @@ public class Person implements Serializable {
 		if (familyType != other.familyType)
 			return false;
 		if (familyValues != other.familyValues)
+			return false;
+		if (foodAndCook == null) {
+			if (other.foodAndCook != null)
+				return false;
+		} else if (!foodAndCook.equals(other.foodAndCook))
 			return false;
 		if (gender != other.gender)
 			return false;
@@ -1041,10 +1123,20 @@ public class Person implements Serializable {
 			return false;
 		if (income != other.income)
 			return false;
+		if (interest == null) {
+			if (other.interest != null)
+				return false;
+		} else if (!interest.equals(other.interest))
+			return false;
 		if (lName == null) {
 			if (other.lName != null)
 				return false;
 		} else if (!lName.equals(other.lName))
+			return false;
+		if (livingWithParant == null) {
+			if (other.livingWithParant != null)
+				return false;
+		} else if (!livingWithParant.equals(other.livingWithParant))
 			return false;
 		if (mName == null) {
 			if (other.mName != null)
@@ -1141,7 +1233,8 @@ public class Person implements Serializable {
 				+ companyName + ", desgination=" + desgination + ", eatingHabit=" + eatingHabit + ", aboutMe=" + aboutMe
 				+ ", hobbies=" + hobbies + ", occupation=" + occupation + ", familyStatus=" + familyStatus
 				+ ", familyValues=" + familyValues + ", familyType=" + familyType + ", aboutFamily=" + aboutFamily
-				+ ", aboutJob=" + aboutJob + ", aboutPartner=" + aboutPartner + "]";
+				+ ", aboutJob=" + aboutJob + ", aboutPartner=" + aboutPartner + ", livingWithParant=" + livingWithParant
+				+ ", foodAndCook=" + foodAndCook + ", interest=" + interest + ", email=" + email + "]";
 	}
 	
 	
