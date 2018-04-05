@@ -2,9 +2,11 @@ package com.jitendra.mehra.dto;
 
 import org.springframework.social.linkedin.api.Education;
 
+import com.jitendra.mehra.enums.Qualification;
+
 public class CollageDetailsDto {
 	
-	 private Education highestEducation;
+	 private Qualification highestEducation;
 	 private String schoolCollegeName ;
 	 private String subject ;
 	 private String pgDegree ;
@@ -17,13 +19,13 @@ public class CollageDetailsDto {
 	/**
 	 * @return the highestEducation
 	 */
-	public Education getHighestEducation() {
+	public Qualification getHighestEducation() {
 		return highestEducation;
 	}
 	/**
 	 * @param highestEducation the highestEducation to set
 	 */
-	public void setHighestEducation(Education highestEducation) {
+	public void setHighestEducation(Qualification highestEducation) {
 		this.highestEducation = highestEducation;
 	}
 	/**

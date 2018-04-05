@@ -192,6 +192,12 @@ public class Person implements Serializable {
 	@Column(name="EMAIL",nullable=true )
 	private String email ;
 	
+	@Column(name="SUBJECT",nullable=true )
+	private String subject ;
+	
+	@Column(name="UNIVERSITY",nullable=true )
+	private String university ;
+	
 	/**
 	 * @return the fName
 	 */
@@ -936,6 +942,36 @@ public class Person implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
+
+	/**
+	 * @return the subject
+	 */
+	public String getSubject() {
+		return subject;
+	}
+
+	/**
+	 * @param subject the subject to set
+	 */
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	/**
+	 * @return the university
+	 */
+	public String getUniversity() {
+		return university;
+	}
+
+	/**
+	 * @param university the university to set
+	 */
+	public void setUniversity(String university) {
+		this.university = university;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -992,7 +1028,9 @@ public class Person implements Serializable {
 		result = prime * result + ((religion == null) ? 0 : religion.hashCode());
 		result = prime * result + ((secoundryContactNo == null) ? 0 : secoundryContactNo.hashCode());
 		result = prime * result + ((somke == null) ? 0 : somke.hashCode());
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + ((tob == null) ? 0 : tob.hashCode());
+		result = prime * result + ((university == null) ? 0 : university.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
 		result = prime * result + ((wishToJob == null) ? 0 : wishToJob.hashCode());
@@ -1191,10 +1229,20 @@ public class Person implements Serializable {
 			return false;
 		if (somke != other.somke)
 			return false;
+		if (subject == null) {
+			if (other.subject != null)
+				return false;
+		} else if (!subject.equals(other.subject))
+			return false;
 		if (tob == null) {
 			if (other.tob != null)
 				return false;
 		} else if (!tob.equals(other.tob))
+			return false;
+		if (university == null) {
+			if (other.university != null)
+				return false;
+		} else if (!university.equals(other.university))
 			return false;
 		if (userName == null) {
 			if (other.userName != null)
@@ -1234,7 +1282,8 @@ public class Person implements Serializable {
 				+ ", hobbies=" + hobbies + ", occupation=" + occupation + ", familyStatus=" + familyStatus
 				+ ", familyValues=" + familyValues + ", familyType=" + familyType + ", aboutFamily=" + aboutFamily
 				+ ", aboutJob=" + aboutJob + ", aboutPartner=" + aboutPartner + ", livingWithParant=" + livingWithParant
-				+ ", foodAndCook=" + foodAndCook + ", interest=" + interest + ", email=" + email + "]";
+				+ ", foodAndCook=" + foodAndCook + ", interest=" + interest + ", email=" + email + ", subject="
+				+ subject + ", university=" + university + "]";
 	}
 	
 	

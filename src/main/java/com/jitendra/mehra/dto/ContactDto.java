@@ -2,33 +2,33 @@ package com.jitendra.mehra.dto;
 
 public class ContactDto {
 	
-	private Integer mobileNumber;
-	private Integer mobileNumber2;
+	private String mobileNumber;
+	private String mobileNumber2;
 	private AddressDto address;
 	private String email ;
 	private String landline;
 	/**
 	 * @return the mobileNumber
 	 */
-	public Integer getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 	/**
 	 * @param mobileNumber the mobileNumber to set
 	 */
-	public void setMobileNumber(Integer mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	/**
 	 * @return the mobileNumber2
 	 */
-	public Integer getMobileNumber2() {
+	public String getMobileNumber2() {
 		return mobileNumber2;
 	}
 	/**
 	 * @param mobileNumber2 the mobileNumber2 to set
 	 */
-	public void setMobileNumber2(Integer mobileNumber2) {
+	public void setMobileNumber2(String mobileNumber2) {
 		this.mobileNumber2 = mobileNumber2;
 	}
 	/**
