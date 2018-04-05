@@ -6,20 +6,20 @@ import java.util.List;
 public class MultiPropertyRequest {
 	
 	 
-	List<ProfileUpdateRequestObject> list;
+	List<ProfileUpdateRequestObject> properites;
 
 	/**
-	 * @return the list
+	 * @return the properites
 	 */
-	public List<ProfileUpdateRequestObject> getList() {
-		return list;
+	public List<ProfileUpdateRequestObject> getProperites() {
+		return properites;
 	}
 
 	/**
-	 * @param list the list to set
+	 * @param properites the properites to set
 	 */
-	public void setList(List<ProfileUpdateRequestObject> list) {
-		this.list = list;
+	public void setProperites(List<ProfileUpdateRequestObject> properites) {
+		this.properites = properites;
 	}
 
 	/* (non-Javadoc)
@@ -27,9 +27,26 @@ public class MultiPropertyRequest {
 	 */
 	@Override
 	public String toString() {
-		return "MultiPropertyRequest [list=" + list + "]";
+		return "MultiPropertyRequest [properites=" + properites + "]";
 	}
-	
+
+	/**
+	 * @param properites
+	 */
+	public MultiPropertyRequest(List<ProfileUpdateRequestObject> properites) {
+		super();
+		this.properites = properites;
+	}
+
+	/**
+	 * 
+	 */
+	public MultiPropertyRequest() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+ 
 	
 
 }

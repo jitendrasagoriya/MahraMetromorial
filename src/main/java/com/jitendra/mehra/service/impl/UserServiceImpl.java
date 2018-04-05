@@ -1,7 +1,7 @@
 package com.jitendra.mehra.service.impl;
 
 import java.util.Arrays;
-
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,6 +89,16 @@ public class UserServiceImpl implements UserService,UserRolesService   {
 	@Override
 	public User update(User user) {
 		return userRepository.saveAndFlush(user);
+	}
+
+	@Override
+	public List<UserRoles> getByUseRoles(String role) {
+		return userRolesRepository.getByUserRole(role.toUpperCase());
+	}
+
+	@Override
+	public List<UserRoles> getRoleByUserName(String username) {
+		 return userRolesRepository.getByUserName(username);
 	}
 
 	 

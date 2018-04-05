@@ -1,8 +1,11 @@
 package com.jitendra.mehra.utils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import com.jitendra.mehra.domin.FamilyMember;
 import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.dto.Profile;
+import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Challenged;
 import com.jitendra.mehra.enums.Complexion;
@@ -154,6 +158,20 @@ public class ProfileReflactionUtility {
 		return profile;
 	}
 	
+	
+	public List<ProfileUpdateRequestObject> convertMapToProfileUpdateRequestObject( Map<String, Object> respose){
+		List<ProfileUpdateRequestObject> properites = null;
+		if(respose != null && !respose.isEmpty()) {
+			properites = new ArrayList<>();
+			for (String propertyName : respose.keySet()) {
+				ProfileUpdateRequestObject requestObject = 
+						new ProfileUpdateRequestObject(propertyName, respose.get(propertyName).toString());
+				properites.add(requestObject);
+			}
+		}
+		
+		return properites;
+	}
 	
 	
 	

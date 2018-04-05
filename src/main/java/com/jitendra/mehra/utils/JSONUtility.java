@@ -10,8 +10,12 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jitendra.mehra.dto.BasicDetailDto;
 import com.jitendra.mehra.dto.MultiPropertyRequest;
 import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
+import com.jitendra.mehra.enums.BodyType;
+import com.jitendra.mehra.enums.Complexion;
+import com.jitendra.mehra.enums.Gender;
 
 public class JSONUtility {
 	
@@ -91,9 +95,20 @@ public class JSONUtility {
 		request.add(object);
 		
 		MultiPropertyRequest multiPropertyRequest = new MultiPropertyRequest();
-		multiPropertyRequest.setList(request);
+		multiPropertyRequest.setProperites( request);
 		
 		System.out.println( convertObjectToJSON(multiPropertyRequest) );
+		
+		BasicDetailDto detailDto = new BasicDetailDto();
+		detailDto.setBodyType(BodyType.ATHLETIC);
+		detailDto.setComplexion(Complexion.FAIR);
+		detailDto.setGender(Gender.MALE);
+		detailDto.setHeight(5);
+		detailDto.setManagedBy("self");
+		detailDto.setShowName(false);
+		detailDto.setWeight(65);
+		
+		System.out.println(convertObjectToJSON(detailDto));
 	}
 
 }

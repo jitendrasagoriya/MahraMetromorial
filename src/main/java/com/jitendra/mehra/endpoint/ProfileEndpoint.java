@@ -18,22 +18,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.mehra.domin.FamilyMember;
+import com.jitendra.mehra.dto.BasicDetailDto;
 import com.jitendra.mehra.dto.MultiPropertyRequest;
-import com.jitendra.mehra.dto.PersonalDetail;
 import com.jitendra.mehra.dto.Profile;
+import com.jitendra.mehra.dto.ProfileBase;
 import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
 import com.jitendra.mehra.service.ProfileService;
+import com.jitendra.mehra.utils.JSONUtility;
 import com.jitendra.mehra.utils.ProfileReflactionUtility;
 
 @RestController
 @RequestMapping(path="/api/profile")
-public class ProfileEndpoint {
+public class ProfileEndpoint extends ProfileDetailsBase {
 	
-
-	private final Logger logger = LoggerFactory.getLogger(ProfileEndpoint.class);	
- 
-	@Autowired
-	private ProfileService profileService;
+	private final Logger logger = LoggerFactory.getLogger(ProfileEndpoint.class);
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(path = "/", method = RequestMethod.GET)
@@ -107,36 +105,13 @@ public class ProfileEndpoint {
 		ProfileReflactionUtility utility = new ProfileReflactionUtility();
 		
 		logger.info("updateProfile batch : {}" ,user.getName());	
-		logger.info("updateProfile JSON Object : {}" ,requestObjects);	
+		logger.info("updateProfile JSON Object : {}" ,requestObjects);			
 		
-		Profile profile = null ;
-		profile = profileService.get(user.getName());	
-		for (ProfileUpdateRequestObject profileUpdateRequestObject : requestObjects.getList()) {
-			
-			if(profileUpdateRequestObject.getId() != null && profileUpdateRequestObject.getId() > 0) {
-				
-				logger.info("Family member need to be updated : {}" ,profileUpdateRequestObject.getId());
-				for (FamilyMember familyMember : profile.getFamilyMembers()) {
-					if(familyMember.getId() == profileUpdateRequestObject.getId() ) {
-						familyMember.setIsEdit(Boolean.TRUE);
-					}
-				}
-				
-				logger.info("Updating family member : {}" ,profileUpdateRequestObject.getId());
-				logger.info("Updating family member : property name : {} and property value : {}" ,profileUpdateRequestObject.getPropertyName(), profileUpdateRequestObject.getPropertyValue());
-				profile = utility.updateFamilyMemberByRelflaction(profile, profileUpdateRequestObject.getPropertyName(), profileUpdateRequestObject.getPropertyValue());
-			
-			} else {
-				logger.info("Updating person : property name : {} and property value : {}" ,profileUpdateRequestObject.getPropertyName(), profileUpdateRequestObject.getPropertyValue());
-				profile = utility.updatePersonByRelflaction(profile, profileUpdateRequestObject.getPropertyName(), profileUpdateRequestObject.getPropertyValue());
-			}
-			
-		}
-		
-		profileService.save(profile);
-		
-		return new ResponseEntity<Profile>( profile,HttpStatus.OK );
+		return new ResponseEntity<Profile>( super.updateProfileBase(user, requestObjects, session),HttpStatus.OK );
 	}
+	
+	
+	
 	
 
 }

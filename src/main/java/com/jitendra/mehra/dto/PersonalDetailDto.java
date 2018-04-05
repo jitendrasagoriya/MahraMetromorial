@@ -5,7 +5,8 @@ import java.sql.Date;
 import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.Occupation;
 
-public class PersonalDetail {
+public class PersonalDetailDto {
+	
 	private Occupation occupation;
 	private MaritalStatus maritalStatus;
 	private String habit;
@@ -80,7 +81,5 @@ public class PersonalDetail {
 				+ ", eyeColor=" + eyeColor + ", dob=" + dob + "]";
 	}
 	
-	
-	
-	
+
 }
