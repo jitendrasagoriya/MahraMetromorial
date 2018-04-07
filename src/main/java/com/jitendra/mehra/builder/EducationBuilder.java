@@ -1,5 +1,6 @@
 package com.jitendra.mehra.builder;
 
+import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.dto.CollageDetailsDto;
 import com.jitendra.mehra.dto.EducationDto;
 import com.jitendra.mehra.dto.Profile;
@@ -18,6 +19,12 @@ public class EducationBuilder {
 		education = new EducationDto();
 		education.setAboutEducation(profile.getPerson().getAboutMe());
 		education.setCollageDetail(new CollageDetailsBuilder(profile).build());
+	}
+	
+	public EducationBuilder(Person person) {
+		education = new EducationDto();
+		education.setAboutEducation(person.getAboutMe());
+		education.setCollageDetail(new CollageDetailsBuilder(person).build());
 	}
 	
 	public EducationBuilder withAboutEducation(String aboutEducation) {

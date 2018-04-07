@@ -1,6 +1,6 @@
 package com.jitendra.mehra.dto;
 
-import com.jitendra.mehra.enums.ParantsDto;
+ 
 
 public class FamilyDto {
 

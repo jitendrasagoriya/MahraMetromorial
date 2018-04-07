@@ -1,5 +1,6 @@
 package com.jitendra.mehra.builder;
 
+import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.dto.BasicDetailDto;
 import com.jitendra.mehra.dto.Profile;
 import com.jitendra.mehra.enums.BodyType;
@@ -27,6 +28,17 @@ public class BasicDetailsBuilder {
 		basicDetailDto.setManagedBy( "SELF");		
 		basicDetailDto.setShowName(Boolean.FALSE);
 		basicDetailDto.setWeight(  profile.getPerson().getWeight());		 
+	}
+	
+	public BasicDetailsBuilder(Person person ) {
+		basicDetailDto = new BasicDetailDto();
+		basicDetailDto.setBodyType(person.getBodyType());
+		basicDetailDto.setComplexion(person.getComplexion());
+		basicDetailDto.setGender(person.getGender());
+		basicDetailDto.setHeight( Integer.parseInt( person.getHeight()));
+		basicDetailDto.setManagedBy( "SELF");		
+		basicDetailDto.setShowName(Boolean.FALSE);
+		basicDetailDto.setWeight(  person.getWeight());		 
 	}
 	
 	public BasicDetailsBuilder withBodyType(BodyType bodyType) {

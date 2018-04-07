@@ -1,5 +1,6 @@
 package com.jitendra.mehra.builder;
 
+import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.dto.CareerDetailDto;
 import com.jitendra.mehra.dto.Profile;
 import com.jitendra.mehra.enums.Occupation;
@@ -19,6 +20,14 @@ public class CareerDetailBuilder {
 		careerDetail.setExperience(0);
 		careerDetail.setIncome(profile.getPerson().getIncome());
 		careerDetail.setOccupation(profile.getPerson().getOccupation() );
+	}
+	
+	public CareerDetailBuilder(Person person) {	
+		careerDetail = new CareerDetailDto();
+		careerDetail.setDesignation(person.getDesgination());
+		careerDetail.setExperience(0);
+		careerDetail.setIncome(person.getIncome());
+		careerDetail.setOccupation(person.getOccupation() );
 	}
 	
 	public CareerDetailBuilder withDesignation(String designation) {

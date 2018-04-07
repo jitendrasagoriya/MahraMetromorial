@@ -1,5 +1,6 @@
 package com.jitendra.mehra.builder;
 
+import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.dto.ContactDto;
 import com.jitendra.mehra.dto.Profile;
 
@@ -19,6 +20,14 @@ public class ContactBuilder {
 		contact.setLandline(profile.getPerson().getSecoundryContactNo());
 		contact.setMobileNumber(profile.getPerson().getPrimeryContactNo());
 		contact.setMobileNumber2(profile.getPerson().getSecoundryContactNo());
+	}
+	
+	public ContactBuilder(Person person) {
+		contact = new ContactDto();
+		contact.setEmail(person.getEmail());
+		contact.setLandline(person.getSecoundryContactNo());
+		contact.setMobileNumber(person.getPrimeryContactNo());
+		contact.setMobileNumber2(person.getSecoundryContactNo());
 	}
 	
 	public ContactBuilder withEmail(String obj) {

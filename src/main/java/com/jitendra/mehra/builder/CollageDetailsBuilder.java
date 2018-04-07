@@ -1,5 +1,6 @@
 package com.jitendra.mehra.builder;
 
+import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.dto.BasicDetailDto;
 import com.jitendra.mehra.dto.CollageDetailsDto;
 import com.jitendra.mehra.dto.Profile;
@@ -22,6 +23,14 @@ public class CollageDetailsBuilder {
 		collageDetails.setSchoolCollegeName(profile.getPerson().getNameOfCollage());
 		collageDetails.setSubject(profile.getPerson().getSubject());
 		collageDetails.setUniversity(profile.getPerson().getUniversity());		 
+	}
+	
+	public CollageDetailsBuilder(Person person) {
+		collageDetails = new CollageDetailsDto();
+		collageDetails.setHighestEducation(person.getQualification());
+		collageDetails.setSchoolCollegeName(person.getNameOfCollage());
+		collageDetails.setSubject(person.getSubject());
+		collageDetails.setUniversity(person.getUniversity());		 
 	}
 	
 	public CollageDetailsBuilder withHighestEducation(Qualification qualification) {
