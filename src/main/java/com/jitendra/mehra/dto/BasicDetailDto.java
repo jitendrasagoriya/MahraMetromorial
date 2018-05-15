@@ -4,7 +4,7 @@ import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Complexion;
 import com.jitendra.mehra.enums.Gender;
 
-public class BasicDetailDto extends ProfileBase {
+public class BasicDetailDto   {
 	
 	private int height;
 	private String managedBy ;
@@ -106,11 +106,7 @@ public class BasicDetailDto extends ProfileBase {
 				+ ", complexion=" + complexion + ", bodyType=" + bodyType + ", weight=" + weight + ", gender=" + gender
 				+ "]";
 	}
-	@Override
-	public Object getThis() {
-		return this;
-	}
-	
+	 
 	
 
 }

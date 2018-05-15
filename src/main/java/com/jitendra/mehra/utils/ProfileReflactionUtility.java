@@ -1,6 +1,7 @@
 package com.jitendra.mehra.utils;
 
 import java.lang.reflect.Field;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ import com.jitendra.mehra.enums.EatingHabit;
 import com.jitendra.mehra.enums.Gender;
 import com.jitendra.mehra.enums.MaritalStatus;
 import com.jitendra.mehra.enums.MotherOccupation;
+import com.jitendra.mehra.enums.Occupation;
 import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.enums.Qualification;
 import com.jitendra.mehra.enums.Relation;
@@ -33,8 +35,7 @@ public class ProfileReflactionUtility {
 	String fmt = "{}:  {} = {}";
 	
 	public Profile updatePersonByRelflaction(Profile profile,String attributeName,String attributeValue) {
-		logger.info("person : {}",profile);
-		
+		 
 		Person person = profile.getPerson();
 		logger.info("Person name : {}",person.getfName() );
 		try {
@@ -50,7 +51,7 @@ public class ProfileReflactionUtility {
 				logger.info(fmt, "before", field.getName(), person.getBodyType() );
 				field.set(person, BodyType.getByValue(attributeValue));
 				logger.info(fmt, "after", field.getName(), person.getBodyType() );
-			}  else if( field.getType().getSimpleName().equals( "long") ) {
+			}  else if( field.getType().getSimpleName().equalsIgnoreCase(  "long") ) {
 				logger.info(fmt, "before", field.getName(), field.get(field.getName()) );
 				field.setLong(person, Long.parseLong(attributeValue));
 				logger.info(fmt, "after", field.getName(),  field.get(field.getName()));
@@ -94,10 +95,8 @@ public class ProfileReflactionUtility {
 				logger.info(fmt, "before", field.getName(), person.getDrink() );
 				field.set(person, Drink.getByValue(attributeValue));
 				logger.info(fmt, "after", field.getName(), person.getDrink() );
-			} else if( field.getType().getSimpleName().equals( "Boolean") ) {
-				 
-				field.set( person, Boolean.parseBoolean( attributeValue));
-				 
+			} else if( field.getType().getSimpleName().equals( "Boolean") ) {				 
+				field.set( person, Boolean.parseBoolean( attributeValue));				 
 			} else if( field.getType().getSimpleName().equals( "EatingHabit") ) {
 				logger.info(fmt, "before", field.getName(), person.getEatingHabit() );
 				field.set(person, EatingHabit.getByValue(attributeValue));
@@ -113,6 +112,80 @@ public class ProfileReflactionUtility {
 		
 		return profile;
 		
+	}
+	
+	
+	public Object getPersonPropertyValueByRelflaction(Person person,String attributeName) {	 
+		 
+		try {
+			Class<?> c = person.getClass();
+			Field field = c.getDeclaredField(attributeName);			 
+			field.setAccessible(true);			
+			if( field.getType().getSimpleName().equalsIgnoreCase("string") ) {
+				return field.get(person).toString();
+			} else if( field.getType().getSimpleName().equals( "BodyType") ) {				 
+				return BodyType.getByValue(field.get(person).toString());				 
+			} else if( field.getType().getSimpleName().equalsIgnoreCase( "long")  ) {
+				return Long.parseLong(  field.get( person).toString() );
+			} else if( field.getType().getSimpleName().equals( "Gender") ) {
+				return Gender.getByValue( field.get(person ).toString());
+			} else if( field.getType().getSimpleName().equals( "Date") ) {
+				return (Date)field.get( person );
+			} else if( field.getType().getSimpleName().equals( "Qualification") ) {
+				return  Qualification.getByValue(field.get(person).toString());
+			} else if( field.getType().getSimpleName().equalsIgnoreCase( "Integer") ) {				 
+				return Integer.parseInt( field.get(person ).toString());				 
+			} else if( field.getType().getSimpleName().equalsIgnoreCase( "int") ) {				 
+				return Integer.parseInt( field.get(person ).toString());				 
+			} else if( field.getType().getSimpleName().equals( "Complexion") ) {
+				return Complexion.getByValue( field.get(person ).toString());
+			} else if( field.getType().getSimpleName().equals( "Challenged") ) {
+				return Challenged.getByValue(field.get(person ).toString());
+			} else if( field.getType().getSimpleName().equals( "PersonStatus") ) {
+				return PersonStatus.getByValue( field.get(person ).toString());
+			} else if( field.getType().getSimpleName().equals( "MaritalStatus") ) {
+				return MaritalStatus.getByValue(field.get(person ).toString());
+			} else if( field.getType().getSimpleName().equals( "Smoker") ) {
+				return Smoker.getByValue(field.get(person).toString());
+			} else if( field.getType().getSimpleName().equals( "Drink") ) {
+				return Drink.getByValue( field.get(person   ).toString());
+			} else if( field.getType().getSimpleName().equals( "Boolean") ) {				 
+				return field.getBoolean(person) ;				 
+			} else if( field.getType().getSimpleName().equals( "EatingHabit") ) {
+				return EatingHabit.getByValue(field.get(person ).toString());
+			} else if( field.getType().getSimpleName().equals( "Occupation") ) {
+				return Occupation.getByValue(field.get(person ).toString());
+			}
+			
+		} catch (NoSuchFieldException x) {
+		    x.printStackTrace();
+		} catch (IllegalAccessException x) {
+		    x.printStackTrace();
+		}
+		 
+		return null;
+		
+	}
+	
+	public String getType(Person person,String attributeName) {	 
+		 
+		try {
+			Class<?> c = person.getClass();
+			Field field = c.getDeclaredField(attributeName);			 
+			field.setAccessible(true);			
+			return field.getType().getSimpleName();   
+			
+		} catch (NoSuchFieldException x) {
+		    x.printStackTrace();
+		} 
+		 
+		return null;
+		
+	}
+	
+	
+	public Object getPersonPropertyValueByRelflaction(Profile profile,String attributeName) {		 
+		return getPersonPropertyValueByRelflaction(profile.getPerson(), attributeName); 
 	}
 	
 	
@@ -180,9 +253,19 @@ public class ProfileReflactionUtility {
 		Profile profile = new Profile();
 		Person person = new Person();
 		person.setCast("cast1");
+		person.setGotra( "cast1");
 		person.setBodyType(BodyType.ATHLETIC);
 		person.setDoingJob(false);
+		person.setOccupation(Occupation.AIRHOSTESS);
+		person.setId(1L);
+		person.setDob(new Date(System.currentTimeMillis()));
 		profile.setPerson(person);
+		
+		
+		System.out.println("1 "+new ProfileReflactionUtility().getPersonPropertyValueByRelflaction(profile, "occupation"));
+		System.out.println("1 "+new ProfileReflactionUtility().getPersonPropertyValueByRelflaction(profile, "gotra"));
+		System.out.println("1 "+new ProfileReflactionUtility().getPersonPropertyValueByRelflaction(profile, "dob"));
+		System.out.println("1 "+new ProfileReflactionUtility().getPersonPropertyValueByRelflaction(profile, "id"));
 		
 		
 		

@@ -12,7 +12,8 @@ import org.springframework.web.multipart.MultipartException;
 public class RestGlobalExceptionHandler {
 
 	// Catch file size exceeded exception!
-    @ExceptionHandler(MultipartException.class)
+   
+	@ExceptionHandler(MultipartException.class)
     @ResponseBody
     ResponseEntity<?> handleControllerException(HttpServletRequest request, Throwable ex) {
 

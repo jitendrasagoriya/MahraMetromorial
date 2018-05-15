@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.mehra.domin.Like;
-import com.jitendra.mehra.domin.Request;
 import com.jitendra.mehra.domin.RequestAndLikeIdenntity;
-import com.jitendra.mehra.enums.RequestStatus;
 import com.jitendra.mehra.service.LikeService;
 
 @RestController

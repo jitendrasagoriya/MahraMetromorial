@@ -15,7 +15,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class CrosFilter extends  OncePerRequestFilter  {
 	
-	 private final Logger logger = LoggerFactory.getLogger(CrosFilter.class);
+	 @SuppressWarnings("unused")
+	private final Logger logger = LoggerFactory.getLogger(CrosFilter.class);
 	 
 	  @Override
 	    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

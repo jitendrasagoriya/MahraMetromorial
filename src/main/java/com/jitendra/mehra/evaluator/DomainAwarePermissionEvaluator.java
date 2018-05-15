@@ -65,7 +65,9 @@ public class DomainAwarePermissionEvaluator implements PermissionEvaluator{
 
 	@Value
 	static class DomainObjectReference {
+		@SuppressWarnings("unused")
 		private final Serializable targetId;
+		@SuppressWarnings("unused")
 		private final String targetType;
 		/**
 		 * @param targetId

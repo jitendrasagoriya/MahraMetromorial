@@ -5,81 +5,94 @@ import java.util.Map;
 
 public enum Occupation {
 
-	LOOKINGFORAJOB(1,"Looking for a job"),
-	NOTWORKING(2,"Not working"),
-	ACTORMODEL(3,"Actor/Model"),
-	ADVERTISINGPROFESSIONAL(4,"Advertising Professional"),
-	AGENT(5,"Agent"),
-	AIRHOSTESS(6,"Air Hostess"),
-	ANALYST(7,"Analyst"),
-	ARCHITECT(8,"Architect"),
-	BPOITES(9,"BPO/ITeS"),
-	BANKINGPROFESSIONAL(10,"Banking Professional"),
-	BEAUTICIAN(11,"Beautician"),
-	BUSINESSPERSON(12,"Businessperson"),
-	CHARTEREDACCOUNTANT(13,"Chartered accountant"),
-	CIVILSERVICES(14,"Civil Services (IAS/ IFS/ IPS/ IRS)"),
-	CONSULTANT(15,"Consultant"),
-	CORPORATECOMMUNICATION(16,"Corporate Communication"),
-	CORPORATEPLANNINGPROFESSIONAL(17,"Corporate Planning Professional"),
-	CUSTOMERSERVICES(18,"Customer Services"),
-	CYBERNETWORKSECURITY(19,"Cyber / Network Security"),
-	DEFENCE(20,"Defence"),
-	DOCTOR(21,"Doctor"),
-	EDUCATIONPROFESSIONAL(22,"Education Professional"),
-	ENGINEERNONIT(23,"Engineer - Non IT"),
-	FARMING(24,"Farming"),
-	FASHIONDESIGNER(25,"Fashion Designer"),
-	FILMPROFESSIONAL(26,"Film Professional"),
-	FINANCIALSERVICESACCOUNTING(27,"Financial Services/Accounting"),
-	FITNESSPROFESSIONAL(28,"Fitness Professional"),
-	GOVTSERVICES(29,"Govt. Services"),
-	HRPROFESSIONAL(30,"HR Professional"),
-	HARDWARETELECOM(31,"Hardware/Telecom"),
-	HEALTHCAREPROFESSIONAL(32,"Healthcare Professional"),
-	HOTELSHOSPITALITYPROFESSIONAL(33,"Hotels/Hospitality Professional"),
-	INTERIORDESIGNER(34,"Interior Designer"),
-	JOURNALIST(35,"Journalist"),
-	LAWYERANDLEGALPROFESSIONAL(36,"Lawyer/Legal Professional"),
-	LOGISTICSSCMPROFESSIONAL(37,"Logistics/SCM Professional"),
-	MANAGER(38,"Manager"),
-	MARKETINGPROFESSIONAL(39,"Marketing Professional"),
-	MEDIAPROFESSIONAL(40,"Media Professional"),
-	MERCHANTNAVY(41,"Merchant Navy"),
-	NGOSOCIALSERVICES(42,"NGO/Social Services"),
-	NURSE(43,"Nurse"),
-	OFFICEADMIN(44,"Office Admin"),
-	OPERATORTECHNICIAN(45,"Operator/Technician"),
-	PHYSIOTHERAPIST(46,"Physiotherapist"),
-	PILOT(47,"Pilot"),
-	POLICE(48,"Police"),
-	PRIVATESECURITY(49,"Private Security"),
-	PRODUCTMANAGER(50,"Product manager"),
-	PROFESSORLECTURER(51,"Professor/Lecturer"),
-	PROGRAMMANAGER(52,"Program Manager"),
-	PROJECTMANAGERIT(53,"Project Manager - IT"),
-	PROJECTMANAGERNONI(54,"Project Manager - Non IT"),
-	PSYCHOLOGIST(55,"Psychologist"),
-	RESEARCHPROFESSIONAL(56,"Research Professional"),
-	SALESPROFESSIONAL(57,"Sales Professional"),
-	SCIENTIST(58,"Scientist"),
-	SECRETARYFRONTOFFICE(59,"Secretary/Front Office"),
-	SECURITYPROFESSIONAL(60,"Security Professional"),
-	SELFEMPLOYED(61,"Self Employed"),
-	SOFTWAREPROFESSIONAL(62,"Software Professional"),
-	SPORTSPERSON(63,"Sportsperson"),
-	STUDENT(64,"Student"),
-	TEACHER(65,"Teacher"),
-	TOPMANAGEMENT(66,"Top Management (CXO M.D. etc.)"),
-	UIUXDESIGNER(67,"UI/UX designer"),
-	WEBGRAPHIDESIGN(68,"Web/Graphic Design"),
-	OTHERS(69,"Others");
+	LOOKINGFORAJOB(1,"LOOKINGFORAJOB","Looking for a job"),
+	NOTWORKING(2,"NOTWORKING","Not working"),
+	ACTORMODEL(3,"ACTORMODEL","Actor/Model"),
+	ADVERTISINGPROFESSIONAL(4,"ADVERTISINGPROFESSIONAL","Advertising Professional"),
+	AGENT(5,"AGENT","Agent"),
+	AIRHOSTESS(6,"AIRHOSTESS","Air Hostess"),
+	ANALYST(7,"ANALYST","Analyst"),
+	ARCHITECT(8,"ARCHITECT","Architect"),
+	BPOITES(9,"BPOITES","BPO/ITeS"),
+	BANKINGPROFESSIONAL(10,"BANKINGPROFESSIONAL","Banking Professional"),
+	BEAUTICIAN(11,"BEAUTICIAN","Beautician"),
+	BUSINESSPERSON(12,"BUSINESSPERSON","Businessperson"),
+	CHARTEREDACCOUNTANT(13,"CHARTEREDACCOUNTANT","Chartered accountant"),
+	CIVILSERVICES(14,"CIVILSERVICES","Civil Services (IAS/ IFS/ IPS/ IRS)"),
+	CONSULTANT(15,"CONSULTANT","Consultant"),
+	CORPORATECOMMUNICATION(16,"CORPORATECOMMUNICATION","Corporate Communication"),
+	CORPORATEPLANNINGPROFESSIONAL(17,"CORPORATEPLANNINGPROFESSIONAL","Corporate Planning Professional"),
+	CUSTOMERSERVICES(18,"CUSTOMERSERVICES","Customer Services"),
+	CYBERNETWORKSECURITY(19,"CYBERNETWORKSECURITY","Cyber / Network Security"),
+	DEFENCE(20,"DEFENCE","Defence"),
+	DOCTOR(21,"DOCTOR","Doctor"),
+	EDUCATIONPROFESSIONAL(22,"EDUCATIONPROFESSIONAL","Education Professional"),
+	ENGINEERNONIT(23,"ENGINEERNONIT","Engineer - Non IT"),
+	FARMING(24,"FARMING","Farming"),
+	FASHIONDESIGNER(25,"FASHIONDESIGNER","Fashion Designer"),
+	FILMPROFESSIONAL(26,"FILMPROFESSIONAL","Film Professional"),
+	FINANCIALSERVICESACCOUNTING(27,"FINANCIALSERVICESACCOUNTING","Financial Services/Accounting"),
+	FITNESSPROFESSIONAL(28,"FITNESSPROFESSIONAL","Fitness Professional"),
+	GOVTSERVICES(29,"GOVTSERVICES","Govt. Services"),
+	HRPROFESSIONAL(30,"HRPROFESSIONAL","HR Professional"),
+	HARDWARETELECOM(31,"HARDWARETELECOM","Hardware/Telecom"),
+	HEALTHCAREPROFESSIONAL(32,"HEALTHCAREPROFESSIONAL","Healthcare Professional"),
+	HOTELSHOSPITALITYPROFESSIONAL(33,"HOTELSHOSPITALITYPROFESSIONAL","Hotels/Hospitality Professional"),
+	INTERIORDESIGNER(34,"INTERIORDESIGNER","Interior Designer"),
+	JOURNALIST(35,"JOURNALIST","Journalist"),
+	LAWYERANDLEGALPROFESSIONAL(36,"LAWYERANDLEGALPROFESSIONAL","Lawyer/Legal Professional"),
+	LOGISTICSSCMPROFESSIONAL(37,"LOGISTICSSCMPROFESSIONAL","Logistics/SCM Professional"),
+	MANAGER(38,"MANAGER","Manager"),
+	MARKETINGPROFESSIONAL(39,"MARKETINGPROFESSIONAL","Marketing Professional"),
+	MEDIAPROFESSIONAL(40,"MEDIAPROFESSIONAL","Media Professional"),
+	MERCHANTNAVY(41,"MERCHANTNAVY","Merchant Navy"),
+	NGOSOCIALSERVICES(42,"NGOSOCIALSERVICES","NGO/Social Services"),
+	NURSE(43,"NURSE","Nurse"),
+	OFFICEADMIN(44,"OFFICEADMIN","Office Admin"),
+	OPERATORTECHNICIAN(45,"OPERATORTECHNICIAN","Operator/Technician"),
+	PHYSIOTHERAPIST(46,"PHYSIOTHERAPIST","Physiotherapist"),
+	PILOT(47,"PILOT","Pilot"),
+	POLICE(48,"POLICE","Police"),
+	PRIVATESECURITY(49,"PRIVATESECURITY","Private Security"),
+	PRODUCTMANAGER(50,"PRODUCTMANAGER","Product manager"),
+	PROFESSORLECTURER(51,"PROFESSORLECTURER","Professor/Lecturer"),
+	PROGRAMMANAGER(52,"PROGRAMMANAGER","Program Manager"),
+	PROJECTMANAGERIT(53,"PROJECTMANAGERIT","Project Manager - IT"),
+	PROJECTMANAGERNONI(54,"PROJECTMANAGERNONI","Project Manager - Non IT"),
+	PSYCHOLOGIST(55,"PSYCHOLOGIST","Psychologist"),
+	RESEARCHPROFESSIONAL(56,"RESEARCHPROFESSIONAL","Research Professional"),
+	SALESPROFESSIONAL(57,"SALESPROFESSIONAL","Sales Professional"),
+	SCIENTIST(58,"SCIENTIST","Scientist"),
+	SECRETARYFRONTOFFICE(59,"SECRETARYFRONTOFFICE","Secretary/Front Office"),
+	SECURITYPROFESSIONAL(60,"SECURITYPROFESSIONAL","Security Professional"),
+	SELFEMPLOYED(61,"SELFEMPLOYED","Self Employed"),
+	SOFTWAREPROFESSIONAL(62,"SOFTWAREPROFESSIONAL","Software Professional"),
+	SPORTSPERSON(63,"SPORTSPERSON","Sportsperson"),
+	STUDENT(64,"STUDENT","Student"),
+	TEACHER(65,"TEACHER","Teacher"),
+	TOPMANAGEMENT(66,"TOPMANAGEMENT","Top Management (CXO M.D. etc.)"),
+	UIUXDESIGNER(67,"UIUXDESIGNER","UI/UX designer"),
+	WEBGRAPHIDESIGN(68,"WEBGRAPHIDESIGN","Web/Graphic Design"),
+	OTHERS(69,"OTHERS","Others");
 	
 	private int id;
 	
 	private String value;
 	
+	private String description;
 	
+	
+	/**
+	 * @param id
+	 * @param value
+	 * @param description
+	 */
+	private Occupation(int id, String value, String description) {
+		this.id = id;
+		this.value = value;
+		this.description = description;
+	}
+
 	private static final Map<Integer, Occupation> byId = new HashMap<Integer, Occupation>();
 	private static final Map<String, Occupation> byValue = new HashMap<String, Occupation>();
 	
@@ -124,6 +137,13 @@ public enum Occupation {
 	 */
 	public String getValue() {
 		return value;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
 	}
 	
 	

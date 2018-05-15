@@ -1,9 +1,6 @@
 package com.jitendra.mehra.endpoint;
 
-import java.io.File;
-import java.io.IOException;
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,15 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jitendra.mehra.domin.FamilyMember;
-import com.jitendra.mehra.enums.BodyType;
-import com.jitendra.mehra.enums.Complexion;
-import com.jitendra.mehra.enums.Qualification;
-import com.jitendra.mehra.search.Age;
-import com.jitendra.mehra.search.Height;
-import com.jitendra.mehra.search.Income;
-import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.FamilyMemberService;
 
 @RestController

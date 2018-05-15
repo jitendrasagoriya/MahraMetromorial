@@ -38,13 +38,17 @@ public class BasicDetailsEndpoint extends ProfileDetailsBase {
 		logger.info("updateBasic batch : {}" ,user.getName());	
 		logger.info("updateBasic JSON String : {}" ,profileBase);	
 		logger.info("updateBasic JSON Map : {}" ,JSONUtility.jsonToMap(profileBase));	
-		logger.info( "updateBasic Convert Into properties {}" , utility.convertMapToProfileUpdateRequestObject(JSONUtility.jsonToMap(profileBase)));
+		logger.info("updateBasic Convert Into properties {}" , utility.convertMapToProfileUpdateRequestObject(JSONUtility.jsonToMap(profileBase)));
 			
 		return  new ResponseEntity<Profile>( 
 				updateProfileBase(user, 
 						new MultiPropertyRequest(
 								utility.convertMapToProfileUpdateRequestObject(
-										JSONUtility.jsonToMap(profileBase))), session),HttpStatus.OK );
+										JSONUtility.jsonToMap(profileBase)
+										)
+								), session
+						),HttpStatus.OK 
+				);
 	} 
 	
 	

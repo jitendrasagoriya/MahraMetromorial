@@ -5,14 +5,16 @@ import java.util.Map;
 
 public enum Smoker {
 	
-	NA(0,"NA"),
-	NO(1,"No"),
-	YES(2,"Yes"),
-	OCCASIONALLY(4,"Occasionally");
+	NA(0,"NA","NA"),
+	NO(1,"NO","No"),
+	YES(2,"YES","Yes"),
+	OCCASIONALLY(4,"OCCASIONALLY","Occasionally");
 	
 	private int id;
 	
 	private String value;
+	
+	private String desc;
 	
 	
 	private static final Map<Integer, Smoker> byId = new HashMap<>();
@@ -44,9 +46,10 @@ public enum Smoker {
 	 * @param id
 	 * @param value
 	 */
-	private Smoker(int id, String value) {
+	private Smoker(int id, String value,String desc) {
 		this.id = id;
 		this.value = value;
+		this.desc = desc;
 	}
 
 	/**
@@ -61,6 +64,13 @@ public enum Smoker {
 	 */
 	public String getValue() {
 		return value;
+	}
+
+	/**
+	 * @return the desc
+	 */
+	public String getDesc() {
+		return desc;
 	}
 	
 	

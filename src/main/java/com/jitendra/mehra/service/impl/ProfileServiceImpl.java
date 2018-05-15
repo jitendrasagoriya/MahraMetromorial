@@ -6,10 +6,12 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jitendra.mehra.domin.FamilyMember;
 import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.dto.Profile;
+import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
 import com.jitendra.mehra.service.FamilyMemberService;
 import com.jitendra.mehra.service.PersonService;
 import com.jitendra.mehra.service.ProfileService;
@@ -49,4 +51,17 @@ public class ProfileServiceImpl implements ProfileService {
 		return profile;
 	}
 
+
+
+	@Transactional
+	@Override
+	public Profile update(List<ProfileUpdateRequestObject> updateRequestObjects, String userName) {
+		int i =0;
+		Person person = personService.getById(userName);
+		i = personService.update(updateRequestObjects, person);
+		if(i > 0) {
+			return  get(userName);
+		}				
+		return null;
+	}
 }

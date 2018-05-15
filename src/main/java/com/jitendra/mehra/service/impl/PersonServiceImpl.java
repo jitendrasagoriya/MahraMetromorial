@@ -1,6 +1,7 @@
 package com.jitendra.mehra.service.impl;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jitendra.mehra.domin.FamilyMember;
 import com.jitendra.mehra.domin.Person;
 import com.jitendra.mehra.domin.UserRoles;
+import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
 import com.jitendra.mehra.enums.BodyType;
 import com.jitendra.mehra.enums.Complexion;
 import com.jitendra.mehra.enums.MaritalStatus;
@@ -30,6 +32,8 @@ import com.jitendra.mehra.search.Search;
 import com.jitendra.mehra.service.FamilyMemberService;
 import com.jitendra.mehra.service.PersonService;
 import com.jitendra.mehra.utils.DateUtility;
+import com.jitendra.mehra.utils.ProfileReflactionUtility;
+import com.jitendra.mehra.utils.Utility;
 
 
 @Service
@@ -85,6 +89,62 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public int temporyHide(String username,PersonStatus status) {
 		return personRepository.hide(username, status);
+	}
+	
+	
+	@Transactional
+	public int update( List<ProfileUpdateRequestObject> updateRequestObjects, Person person ) {
+		
+		logger.info("Request object {} and person object :{}", updateRequestObjects, person);
+
+		String update = "UPDATE Person p SET ";
+		StringBuffer queryString = new StringBuffer(update);
+		ProfileReflactionUtility utility = new ProfileReflactionUtility();
+		LinkedHashSet<Object> objects = new LinkedHashSet<>();
+
+		for (ProfileUpdateRequestObject profileUpdateRequestObject : updateRequestObjects) {
+			String actualValue = utility
+					.getPersonPropertyValueByRelflaction(person, profileUpdateRequestObject.getPropertyName())
+					.toString();
+			if (!actualValue.equalsIgnoreCase(profileUpdateRequestObject.getPropertyValue())) {
+				queryString.append("p." + profileUpdateRequestObject.getPropertyName() + " = ?");
+				queryString.append(",");
+
+				Object intValue = Utility.getEmumIdByValue(profileUpdateRequestObject.getPropertyName(),
+						profileUpdateRequestObject.getPropertyValue());
+				if (intValue != null) {
+					objects.add(intValue);
+				} else {
+					objects.add(Utility.getRawTypeValue(
+							utility.getType(person, profileUpdateRequestObject.getPropertyName()),
+							profileUpdateRequestObject.getPropertyValue()));
+				}
+
+			}
+		}
+
+		String str = queryString.toString();
+		int idx = str.lastIndexOf(",");
+		if (idx >= 0) {
+			str = str.substring(0, idx) + str.substring(idx + 1);
+		}
+		queryString = new StringBuffer(str);
+		logger.info("queryString :{}", queryString);
+		logger.info("input values :{}", objects);
+
+		queryString.append(" WHERE p.userName = ?");
+
+		javax.persistence.Query query = em.createQuery(queryString.toString());
+		int i = 1;
+		for (Object object : objects) {
+			query.setParameter(i++, object);
+		}
+		query.setParameter(i, person.getUserName());
+
+		logger.info("queryString :{}", queryString);
+		logger.info("query :{}", query);
+		return query.executeUpdate();
+		
 	}
 
 	@SuppressWarnings({ "unused" })

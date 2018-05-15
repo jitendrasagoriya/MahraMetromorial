@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jitendra.mehra.domin.Person;
+import com.jitendra.mehra.dto.ProfileUpdateRequestObject;
 import com.jitendra.mehra.enums.PersonStatus;
 import com.jitendra.mehra.search.Search;
 
@@ -37,6 +38,8 @@ public interface PersonService {
 	public int setProfilePic(String username,String name);
 	
 	public Person createPerson(Person person);	
+	
+	public int update( List<ProfileUpdateRequestObject> updateRequestObjects, Person person );
 	
 	/**
 	 * 
