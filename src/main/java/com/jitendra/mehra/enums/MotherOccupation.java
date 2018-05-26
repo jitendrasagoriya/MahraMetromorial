@@ -5,19 +5,24 @@ import java.util.Map;
 
 public enum MotherOccupation {
 	
-	HOUSEWIFE(0,"Housewife"),
-	BUSSINESS(1,"Business/Entrepreneur"),
-	PRIVATE(2,"Service-Private"),
-	GOVERNAMENT(3,"Service-Govt/PSU"),
-	ARMY(4,"Army/Armed forces"),
-	CIVIL(5,"Civil Services"),
-	TEACHER(6,"Teacher"),
-	RETIRED(7,"Retired"),
-	EXPIRED(8,"expired");
+	HOUSEWIFE(0,"HOUSEWIFE","Housewife"),
+	BUSSINESS(1,"BUSSINESS","Business/Entrepreneur"),
+	PRIVATE(2,"PRIVATE","Service-Private"),
+	GOVERNAMENT(3,"GOVERNAMENT","Service-Govt/PSU"),
+	ARMY(4,"ARMY","Army/Armed forces"),
+	CIVIL(5,"CIVIL","Civil Services"),
+	TEACHER(6,"TEACHER","Teacher"),
+	RETIRED(7,"RETIRED","Retired"),
+	EXPIRED(8,"EXPIRED","expired"),
+	FARMER(9,"FARMER","Farmer"),
+	NOTEMPLOYED(10,"NOTEMPLOYED","Not Employed"),
+	OTHERS(11,"OTHERS","others");
 	
 	private int id;
 	
 	private String value;
+	
+	private String desc;
 	
 	private static final Map<Integer, MotherOccupation> byId = new HashMap<Integer, MotherOccupation>();
 	private static final Map<String, MotherOccupation> byValue = new HashMap<String, MotherOccupation>();
@@ -47,9 +52,10 @@ public enum MotherOccupation {
 	 * @param id
 	 * @param value
 	 */
-	private MotherOccupation(int id, String value) {
+	private MotherOccupation(int id, String value,String desc) {
 		this.id = id;
 		this.value = value;
+		this.desc = desc;
 	}
 
 	/**

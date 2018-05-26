@@ -191,8 +191,11 @@ public class ProfileReflactionUtility {
 	
 	public Profile updateFamilyMemberByRelflaction(Profile profile,String attributeName,String attributeValue) {
 		
+		logger.info( "updateFamilyMemberByRelflaction");
+		
 		for (FamilyMember familyMember : profile.getFamilyMembers()) {
-			if(familyMember.getIsEdit()) {
+			logger.info( "updateFamilyMemberByRelflaction : member : {}",familyMember);
+			if(familyMember.getIsEdit()!=null && familyMember.getIsEdit()) {
 				try {
 					Class<?> c = familyMember.getClass();
 					Field field = c.getDeclaredField(attributeName);			 
