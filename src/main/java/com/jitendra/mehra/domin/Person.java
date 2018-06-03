@@ -26,178 +26,187 @@ import com.jitendra.mehra.enums.Qualification;
 import com.jitendra.mehra.enums.Smoker;
 
 @Entity
-@Table(name="PERSON")
+@Table(name = "PERSON")
 public class Person implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@Column(name="ID",nullable=true,unique = true)
-	@GeneratedValue(strategy = GenerationType.AUTO )
+
+	@Column(name = "ID", nullable = true, unique = true)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Id
-	@Column(name="USERNAME",nullable=true,length = 50,unique = true)
+	@Column(name = "USERNAME", nullable = true, length = 50, unique = true)
 	private String userName;
-	
-	@Column(name="FIRSTNAME",nullable=false,length = 50)
+
+	@Column(name = "FIRSTNAME", nullable = false, length = 50)
 	private String fName;
-	
-	@Column(name="MIDDLENAME",nullable=true,length = 50)
+
+	@Column(name = "MIDDLENAME", nullable = true, length = 50)
 	private String mName;
-	
-	@Column(name="LASTENAME",nullable=false,length = 50)
+
+	@Column(name = "LASTENAME", nullable = false, length = 50)
 	private String lName;
-	
-	@Column(name="GENDER",nullable=true,length = 50,columnDefinition = "int default '0'")
-	private Gender gender;	
-	
-	@Column(name="DATEODBIRTH",nullable=false)
+
+	@Column(name = "GENDER", nullable = true, length = 50, columnDefinition = "int default '0'")
+	private Gender gender;
+
+	@Column(name = "DATEODBIRTH", nullable = false)
 	private Date dob;
-	
-	@Column(name="TIMEOFBIRTH",nullable=false)
+
+	@Column(name = "TIMEOFBIRTH", nullable = false)
 	private String tob;
-	
-	@Column(name="PLACEOFBIRTH",nullable=false,length = 100)
+
+	@Column(name = "PLACEOFBIRTH", nullable = false, length = 100)
 	private String placeOfBirth;
-	
-	@Column(name="QUALIFICATION",nullable=false,columnDefinition = "int default '0'")
+
+	@Column(name = "QUALIFICATION", nullable = false, columnDefinition = "int default '0'")
 	private Qualification qualification;
-	
-	@Column(name="RELIGION",nullable=false,length = 50)
+
+	@Column(name = "RELIGION", nullable = false, length = 50)
 	private String religion;
-	
-	@Column(name="CAST",nullable=false,length = 50)
+
+	@Column(name = "CAST", nullable = false, length = 50)
 	private String cast;
-	
-	@Column(name="GOTRA",nullable=false,length = 50)
+
+	@Column(name = "GOTRA", nullable = false, length = 50)
 	private String gotra;
-	
-	@Column(name="GOTRATOSAVE",nullable=false,length = 200)
+
+	@Column(name = "GOTRATOSAVE", nullable = false, length = 200)
 	private String gotraToSave;
-	
-	@Column(name="COLLAGE",nullable=false,length = 200)
+
+	@Column(name = "COLLAGE", nullable = false, length = 200)
 	private String nameOfCollage;
-	
-	@Column(name="INCOME",nullable=false)
+
+	@Column(name = "INCOME", nullable = false)
 	private long income;
-	
-	@Column(name="FAMILYINCOME",nullable=false)
+
+	@Column(name = "FAMILYINCOME", nullable = false)
 	private long familyIncome;
-	
-	@Column(name="CITY",nullable=false,length = 100)
+
+	@Column(name = "CITY", nullable = false, length = 100)
 	private String city;
-	
-	@Column(name="NOOFSISTER",nullable=false ,columnDefinition = "int default '0'")
+
+	@Column(name = "NOOFSISTER", nullable = false, columnDefinition = "int default '0'")
 	private int noOfSisters;
-	
-	@Column(name="NOOFBROTHER",nullable=false,columnDefinition = "int default '0'")
+
+	@Column(name = "NOOFBROTHER", nullable = false, columnDefinition = "int default '0'")
 	private int noOfBrother;
-	
-	@Column(name="NOOFMARRIEDSISTER",nullable=false ,columnDefinition = "int default '0'")
+
+	@Column(name = "NOOFMARRIEDSISTER", nullable = false, columnDefinition = "int default '0'")
 	private int noOfMarriedSisters;
-	
-	@Column(name="NOOFMARRIEDBROTHER",nullable=false,columnDefinition = "int default '0'")
+
+	@Column(name = "NOOFMARRIEDBROTHER", nullable = false, columnDefinition = "int default '0'")
 	private int noOfMarriedBrother;
-	
-	@Column(name="HEIGHT",nullable=false)
+
+	@Column(name = "HEIGHT", nullable = false)
 	private String height;
-	
-	@Column(name="BODYTYPE",nullable=false,columnDefinition = "int default '0'")
+
+	@Column(name = "BODYTYPE", nullable = false, columnDefinition = "int default '0'")
 	private BodyType bodyType;
-	
-	@Column(name="COMPLEXION",nullable=false,columnDefinition = "int default '0'")
+
+	@Column(name = "COMPLEXION", nullable = false, columnDefinition = "int default '0'")
 	private Complexion complexion;
-	
-	@Column(name="CHALLENGED",nullable=false,columnDefinition = "int default '0'")
+
+	@Column(name = "CHALLENGED", nullable = false, columnDefinition = "int default '0'")
 	private Challenged challenged;
-	
-	@Column(name="PRIMERYCONTACTNO",nullable=false)
+
+	@Column(name = "PRIMERYCONTACTNO", nullable = false)
 	private String primeryContactNo;
-	
-	@Column(name="SECOUNDRYCONTACTNO",nullable=true)
+
+	@Column(name = "SECOUNDRYCONTACTNO", nullable = true)
 	private String secoundryContactNo;
-	
-	@Column(name="STATUS",nullable=true,columnDefinition = "int default '0'")
+
+	@Column(name = "STATUS", nullable = true, columnDefinition = "int default '0'")
 	private PersonStatus personStatus;
-	
-	@Column(name="PROFILEPIC",nullable=true)
-	private String profilePic;	
-	
-	@Column(name="MARITALSTATUS",nullable=true,columnDefinition = "int default '0'")	 
+
+	@Column(name = "PROFILEPIC", nullable = true)
+	private String profilePic;
+
+	@Column(name = "MARITALSTATUS", nullable = true, columnDefinition = "int default '0'")
 	private MaritalStatus maritalStatus;
-	
-	@Column(name="WEIGHT",nullable=true)	 
+
+	@Column(name = "WEIGHT", nullable = true)
 	private Integer weight;
-	
-	@Column(name="SMOKE",nullable=true,columnDefinition = "int default '0'")	 
+
+	@Column(name = "SMOKE", nullable = true, columnDefinition = "int default '0'")
 	private Smoker somke;
-	
-	@Column(name="DRINK",nullable=true,columnDefinition = "int default '0'")	 
+
+	@Column(name = "DRINK", nullable = true, columnDefinition = "int default '0'")
 	private Drink drink;
-	
-	@Column(name="DOINGJOB",nullable=true)	 
+
+	@Column(name = "DOINGJOB", nullable = true)
 	private Boolean doingJob;
-	
-	@Column(name="WISHTOJOB",nullable=true)	 
+
+	@Column(name = "WISHTOJOB", nullable = true)
 	private Boolean wishToJob;
-	
-	@Column(name="COMPANYNAME",nullable=true)	 
+
+	@Column(name = "COMPANYNAME", nullable = true)
 	private String companyName;
-	
-	@Column(name="DESGINATION",nullable=true)	 
+
+	@Column(name = "DESGINATION", nullable = true)
 	private String desgination;
-	
-	@Column(name="EATINGHABIT",nullable=true,columnDefinition = "int default '0'")	 
+
+	@Column(name = "EATINGHABIT", nullable = true, columnDefinition = "int default '0'")
 	private EatingHabit eatingHabit;
-	
-	@Column(name="ABOUTME",nullable=true)	 
+
+	@Column(name = "ABOUTME", nullable = true)
 	private String aboutMe;
-	
-	@Column(name="HOBBIES",nullable=true)	 
+
+	@Column(name = "HOBBIES", nullable = true)
 	private String hobbies;
 
-	@Column(name="OCCUPATION",nullable=true)
-	private Occupation occupation;	
-	
-	@Column(name="FAMILYSTATUS",nullable=true)
+	@Column(name = "OCCUPATION", nullable = true)
+	private Occupation occupation;
+
+	@Column(name = "FAMILYSTATUS", nullable = true)
 	private FamilyStatus familyStatus;
-	
-	@Column(name="FAMILYVALUES",nullable=true)
+
+	@Column(name = "FAMILYVALUES", nullable = true)
 	private FamilyValues familyValues;
-	
-	@Column(name="FAMILYTYPE",nullable=true)
+
+	@Column(name = "FAMILYTYPE", nullable = true)
 	private FamilyType familyType;
-	
-	@Column(name="ABOUTFAMILY",nullable=true,length = 200)	 
+
+	@Column(name = "ABOUTFAMILY", nullable = true, length = 200)
 	private String aboutFamily;
-	
-	@Column(name="ABOUTJOB",nullable=true,length = 200)	 
+
+	@Column(name = "ABOUTJOB", nullable = true, length = 200)
 	private String aboutJob;
-	
-	@Column(name="ABOUTPARTNER",nullable=true,length = 200)	 
+
+	@Column(name = "ABOUTPARTNER", nullable = true, length = 200)
 	private String aboutPartner;
-	
-	@Column(name="LIVINGWITHPARANTS",nullable=true )	
+
+	@Column(name = "LIVINGWITHPARANTS", nullable = true)
 	private Boolean livingWithParant;
-	
-	@Column(name="FOODANDCOOK",nullable=true ,length = 200 )
+
+	@Column(name = "FOODANDCOOK", nullable = true, length = 200)
 	private String foodAndCook;
-	
-	@Column(name="INTEREST",nullable=true )
-	private String interest ;
-	
-	@Column(name="EMAIL",nullable=true )
-	private String email ;
-	
-	@Column(name="SUBJECT",nullable=true )
-	private String subject ;
-	
-	@Column(name="UNIVERSITY",nullable=true )
-	private String university ;
-	
+
+	@Column(name = "INTEREST", nullable = true)
+	private String interest;
+
+	@Column(name = "EMAIL", nullable = true)
+	private String email;
+
+	@Column(name = "SUBJECT", nullable = true)
+	private String subject;
+
+	@Column(name = "UNIVERSITY", nullable = true)
+	private String university;
+
+	@Column(name = "ABOUTEDUCATION", nullable = true)
+	private String aboutEducation;
+
+	@Column(name = "ADDRESS", nullable = true, length = 300)
+	private String address;
+
+	@Column(name = "LANDLINENUMBER", nullable = true, length = 15)
+	private String landLineNumber;
+
 	/**
 	 * @return the fName
 	 */
@@ -206,7 +215,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param fName the fName to set
+	 * @param fName
+	 *            the fName to set
 	 */
 	public void setfName(String fName) {
 		this.fName = fName;
@@ -220,7 +230,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param mName the mName to set
+	 * @param mName
+	 *            the mName to set
 	 */
 	public void setmName(String mName) {
 		this.mName = mName;
@@ -234,7 +245,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param lName the lName to set
+	 * @param lName
+	 *            the lName to set
 	 */
 	public void setlName(String lName) {
 		this.lName = lName;
@@ -248,7 +260,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param dob the dob to set
+	 * @param dob
+	 *            the dob to set
 	 */
 	public void setDob(Date dob) {
 		this.dob = dob;
@@ -262,7 +275,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param tob the tob to set
+	 * @param tob
+	 *            the tob to set
 	 */
 	public void setTob(String tob) {
 		this.tob = tob;
@@ -276,7 +290,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param placeOfBirth the placeOfBirth to set
+	 * @param placeOfBirth
+	 *            the placeOfBirth to set
 	 */
 	public void setPlaceOfBirth(String placeOfBirth) {
 		this.placeOfBirth = placeOfBirth;
@@ -290,7 +305,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param qualification the qualification to set
+	 * @param qualification
+	 *            the qualification to set
 	 */
 	public void setQualification(Qualification qualification) {
 		this.qualification = qualification;
@@ -304,7 +320,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param religion the religion to set
+	 * @param religion
+	 *            the religion to set
 	 */
 	public void setReligion(String religion) {
 		this.religion = religion;
@@ -318,7 +335,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param cast the cast to set
+	 * @param cast
+	 *            the cast to set
 	 */
 	public void setCast(String cast) {
 		this.cast = cast;
@@ -332,7 +350,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param gotra the gotra to set
+	 * @param gotra
+	 *            the gotra to set
 	 */
 	public void setGotra(String gotra) {
 		this.gotra = gotra;
@@ -346,7 +365,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param gotraToSave the gotraToSave to set
+	 * @param gotraToSave
+	 *            the gotraToSave to set
 	 */
 	public void setGotraToSave(String gotraToSave) {
 		this.gotraToSave = gotraToSave;
@@ -360,7 +380,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param nameOfCollage the nameOfCollage to set
+	 * @param nameOfCollage
+	 *            the nameOfCollage to set
 	 */
 	public void setNameOfCollage(String nameOfCollage) {
 		this.nameOfCollage = nameOfCollage;
@@ -374,7 +395,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param income the income to set
+	 * @param income
+	 *            the income to set
 	 */
 	public void setIncome(long income) {
 		this.income = income;
@@ -388,7 +410,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param familyIncome the familyIncome to set
+	 * @param familyIncome
+	 *            the familyIncome to set
 	 */
 	public void setFamilyIncome(long familyIncome) {
 		this.familyIncome = familyIncome;
@@ -402,7 +425,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
@@ -416,7 +440,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param noOfSisters the noOfSisters to set
+	 * @param noOfSisters
+	 *            the noOfSisters to set
 	 */
 	public void setNoOfSisters(int noOfSisters) {
 		this.noOfSisters = noOfSisters;
@@ -430,7 +455,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param noOfBrother the noOfBrother to set
+	 * @param noOfBrother
+	 *            the noOfBrother to set
 	 */
 	public void setNoOfBrother(int noOfBrother) {
 		this.noOfBrother = noOfBrother;
@@ -444,7 +470,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param height the height to set
+	 * @param height
+	 *            the height to set
 	 */
 	public void setHeight(String height) {
 		this.height = height;
@@ -458,7 +485,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param bodyType the bodyType to set
+	 * @param bodyType
+	 *            the bodyType to set
 	 */
 	public void setBodyType(BodyType bodyType) {
 		this.bodyType = bodyType;
@@ -472,7 +500,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param complexion the complexion to set
+	 * @param complexion
+	 *            the complexion to set
 	 */
 	public void setComplexion(Complexion complexion) {
 		this.complexion = complexion;
@@ -486,14 +515,13 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param challenged the challenged to set
+	 * @param challenged
+	 *            the challenged to set
 	 */
 	public void setChallenged(Challenged challenged) {
 		this.challenged = challenged;
 	}
 
-	
-	
 	/**
 	 * @return the id
 	 */
@@ -502,7 +530,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -516,7 +545,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param primeryContactNo the primeryContactNo to set
+	 * @param primeryContactNo
+	 *            the primeryContactNo to set
 	 */
 	public void setPrimeryContactNo(String primeryContactNo) {
 		this.primeryContactNo = primeryContactNo;
@@ -530,14 +560,12 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param secoundryContactNo the secoundryContactNo to set
+	 * @param secoundryContactNo
+	 *            the secoundryContactNo to set
 	 */
 	public void setSecoundryContactNo(String secoundryContactNo) {
 		this.secoundryContactNo = secoundryContactNo;
 	}
-	
-	
-	
 
 	/**
 	 * @return the personStatus
@@ -547,12 +575,12 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param personStatus the personStatus to set
+	 * @param personStatus
+	 *            the personStatus to set
 	 */
 	public void setPersonStatus(PersonStatus personStatus) {
 		this.personStatus = personStatus;
 	}
-	
 
 	/**
 	 * @return the profilePic
@@ -562,13 +590,12 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param profilePic the profilePic to set
+	 * @param profilePic
+	 *            the profilePic to set
 	 */
 	public void setProfilePic(String profilePic) {
 		this.profilePic = profilePic;
 	}
-	
-	
 
 	/**
 	 * @return the gender
@@ -578,7 +605,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param gender the gender to set
+	 * @param gender
+	 *            the gender to set
 	 */
 	public void setGender(Gender gender) {
 		this.gender = gender;
@@ -592,7 +620,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param maritalStatus the maritalStatus to set
+	 * @param maritalStatus
+	 *            the maritalStatus to set
 	 */
 	public void setMaritalStatus(MaritalStatus maritalStatus) {
 		this.maritalStatus = maritalStatus;
@@ -606,7 +635,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param userName the userName to set
+	 * @param userName
+	 *            the userName to set
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -620,12 +650,12 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param weight the weight to set
+	 * @param weight
+	 *            the weight to set
 	 */
 	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
-	
 
 	/**
 	 * @return the somke
@@ -635,7 +665,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param somke the somke to set
+	 * @param somke
+	 *            the somke to set
 	 */
 	public void setSomke(Smoker somke) {
 		this.somke = somke;
@@ -649,7 +680,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param drink the drink to set
+	 * @param drink
+	 *            the drink to set
 	 */
 	public void setDrink(Drink drink) {
 		this.drink = drink;
@@ -663,7 +695,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param doingJob the doingJob to set
+	 * @param doingJob
+	 *            the doingJob to set
 	 */
 	public void setDoingJob(Boolean doingJob) {
 		this.doingJob = doingJob;
@@ -677,7 +710,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param wishToJob the wishToJob to set
+	 * @param wishToJob
+	 *            the wishToJob to set
 	 */
 	public void setWishToJob(Boolean wishToJob) {
 		this.wishToJob = wishToJob;
@@ -691,7 +725,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param companyName the companyName to set
+	 * @param companyName
+	 *            the companyName to set
 	 */
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
@@ -705,7 +740,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param desgination the desgination to set
+	 * @param desgination
+	 *            the desgination to set
 	 */
 	public void setDesgination(String desgination) {
 		this.desgination = desgination;
@@ -719,7 +755,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param eatingHabit the eatingHabit to set
+	 * @param eatingHabit
+	 *            the eatingHabit to set
 	 */
 	public void setEatingHabit(EatingHabit eatingHabit) {
 		this.eatingHabit = eatingHabit;
@@ -733,7 +770,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param aboutMe the aboutMe to set
+	 * @param aboutMe
+	 *            the aboutMe to set
 	 */
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
@@ -747,13 +785,13 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param hobbies the hobbies to set
+	 * @param hobbies
+	 *            the hobbies to set
 	 */
 	public void setHobbies(String hobbies) {
 		this.hobbies = hobbies;
 	}
 
-	
 	/**
 	 * @return the occupation
 	 */
@@ -762,13 +800,12 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param occupation the occupation to set
+	 * @param occupation
+	 *            the occupation to set
 	 */
 	public void setOccupation(Occupation occupation) {
 		this.occupation = occupation;
 	}
-
-	 
 
 	/**
 	 * @return the noOfMarriedSisters
@@ -778,7 +815,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param noOfMarriedSisters the noOfMarriedSisters to set
+	 * @param noOfMarriedSisters
+	 *            the noOfMarriedSisters to set
 	 */
 	public void setNoOfMarriedSisters(int noOfMarriedSisters) {
 		this.noOfMarriedSisters = noOfMarriedSisters;
@@ -792,7 +830,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param noOfMarriedBrother the noOfMarriedBrother to set
+	 * @param noOfMarriedBrother
+	 *            the noOfMarriedBrother to set
 	 */
 	public void setNoOfMarriedBrother(int noOfMarriedBrother) {
 		this.noOfMarriedBrother = noOfMarriedBrother;
@@ -806,7 +845,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param familyStatus the familyStatus to set
+	 * @param familyStatus
+	 *            the familyStatus to set
 	 */
 	public void setFamilyStatus(FamilyStatus familyStatus) {
 		this.familyStatus = familyStatus;
@@ -820,7 +860,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param familyValues the familyValues to set
+	 * @param familyValues
+	 *            the familyValues to set
 	 */
 	public void setFamilyValues(FamilyValues familyValues) {
 		this.familyValues = familyValues;
@@ -834,7 +875,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param familyType the familyType to set
+	 * @param familyType
+	 *            the familyType to set
 	 */
 	public void setFamilyType(FamilyType familyType) {
 		this.familyType = familyType;
@@ -848,7 +890,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param aboutFamily the aboutFamily to set
+	 * @param aboutFamily
+	 *            the aboutFamily to set
 	 */
 	public void setAboutFamily(String aboutFamily) {
 		this.aboutFamily = aboutFamily;
@@ -862,7 +905,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param aboutJob the aboutJob to set
+	 * @param aboutJob
+	 *            the aboutJob to set
 	 */
 	public void setAboutJob(String aboutJob) {
 		this.aboutJob = aboutJob;
@@ -876,7 +920,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param aboutPartner the aboutPartner to set
+	 * @param aboutPartner
+	 *            the aboutPartner to set
 	 */
 	public void setAboutPartner(String aboutPartner) {
 		this.aboutPartner = aboutPartner;
@@ -890,7 +935,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param livingWithParant the livingWithParant to set
+	 * @param livingWithParant
+	 *            the livingWithParant to set
 	 */
 	public void setLivingWithParant(Boolean livingWithParant) {
 		this.livingWithParant = livingWithParant;
@@ -904,7 +950,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param foodAndCook the foodAndCook to set
+	 * @param foodAndCook
+	 *            the foodAndCook to set
 	 */
 	public void setFoodAndCook(String foodAndCook) {
 		this.foodAndCook = foodAndCook;
@@ -918,7 +965,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param interest the interest to set
+	 * @param interest
+	 *            the interest to set
 	 */
 	public void setInterest(String interest) {
 		this.interest = interest;
@@ -932,13 +980,12 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
 	/**
 	 * @return the subject
@@ -948,7 +995,8 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param subject the subject to set
+	 * @param subject
+	 *            the subject to set
 	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
@@ -962,23 +1010,73 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * @param university the university to set
+	 * @param university
+	 *            the university to set
 	 */
 	public void setUniversity(String university) {
 		this.university = university;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return the aboutEducation
+	 */
+	public String getAboutEducation() {
+		return aboutEducation;
+	}
+
+	/**
+	 * @param aboutEducation
+	 *            the aboutEducation to set
+	 */
+	public void setAboutEducation(String aboutEducation) {
+		this.aboutEducation = aboutEducation;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param address
+	 *            the address to set
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	/**
+	 * @return the landLineNumber
+	 */
+	public String getLandLineNumber() {
+		return landLineNumber;
+	}
+
+	/**
+	 * @param landLineNumber
+	 *            the landLineNumber to set
+	 */
+	public void setLandLineNumber(String landLineNumber) {
+		this.landLineNumber = landLineNumber;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((aboutEducation == null) ? 0 : aboutEducation.hashCode());
 		result = prime * result + ((aboutFamily == null) ? 0 : aboutFamily.hashCode());
 		result = prime * result + ((aboutJob == null) ? 0 : aboutJob.hashCode());
 		result = prime * result + ((aboutMe == null) ? 0 : aboutMe.hashCode());
 		result = prime * result + ((aboutPartner == null) ? 0 : aboutPartner.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((bodyType == null) ? 0 : bodyType.hashCode());
 		result = prime * result + ((cast == null) ? 0 : cast.hashCode());
 		result = prime * result + ((challenged == null) ? 0 : challenged.hashCode());
@@ -1006,6 +1104,7 @@ public class Person implements Serializable {
 		result = prime * result + (int) (income ^ (income >>> 32));
 		result = prime * result + ((interest == null) ? 0 : interest.hashCode());
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
+		result = prime * result + ((landLineNumber == null) ? 0 : landLineNumber.hashCode());
 		result = prime * result + ((livingWithParant == null) ? 0 : livingWithParant.hashCode());
 		result = prime * result + ((mName == null) ? 0 : mName.hashCode());
 		result = prime * result + ((maritalStatus == null) ? 0 : maritalStatus.hashCode());
@@ -1032,7 +1131,9 @@ public class Person implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -1044,6 +1145,11 @@ public class Person implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
+		if (aboutEducation == null) {
+			if (other.aboutEducation != null)
+				return false;
+		} else if (!aboutEducation.equals(other.aboutEducation))
+			return false;
 		if (aboutFamily == null) {
 			if (other.aboutFamily != null)
 				return false;
@@ -1063,6 +1169,11 @@ public class Person implements Serializable {
 			if (other.aboutPartner != null)
 				return false;
 		} else if (!aboutPartner.equals(other.aboutPartner))
+			return false;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
 			return false;
 		if (bodyType != other.bodyType)
 			return false;
@@ -1166,6 +1277,11 @@ public class Person implements Serializable {
 				return false;
 		} else if (!lName.equals(other.lName))
 			return false;
+		if (landLineNumber == null) {
+			if (other.landLineNumber != null)
+				return false;
+		} else if (!landLineNumber.equals(other.landLineNumber))
+			return false;
 		if (livingWithParant == null) {
 			if (other.livingWithParant != null)
 				return false;
@@ -1257,7 +1373,9 @@ public class Person implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -1278,8 +1396,8 @@ public class Person implements Serializable {
 				+ ", familyValues=" + familyValues + ", familyType=" + familyType + ", aboutFamily=" + aboutFamily
 				+ ", aboutJob=" + aboutJob + ", aboutPartner=" + aboutPartner + ", livingWithParant=" + livingWithParant
 				+ ", foodAndCook=" + foodAndCook + ", interest=" + interest + ", email=" + email + ", subject="
-				+ subject + ", university=" + university + "]";
+				+ subject + ", university=" + university + ", aboutEducation=" + aboutEducation + ", address=" + address
+				+ ", landLineNumber=" + landLineNumber + "]";
 	}
-	
-	
+
 }

@@ -71,6 +71,13 @@ public enum MotherOccupation {
 	public String getValue() {
 		return value;
 	}
+
+	/**
+	 * @return the desc
+	 */
+	public String getDesc() {
+		return desc;
+	}
 	
 	
 

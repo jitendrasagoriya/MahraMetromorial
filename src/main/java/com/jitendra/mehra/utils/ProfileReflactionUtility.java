@@ -52,9 +52,9 @@ public class ProfileReflactionUtility {
 				field.set(person, BodyType.getByValue(attributeValue));
 				logger.info(fmt, "after", field.getName(), person.getBodyType() );
 			}  else if( field.getType().getSimpleName().equalsIgnoreCase(  "long") ) {
-				logger.info(fmt, "before", field.getName(), field.get(field.getName()) );
+				//logger.info(fmt, "before", field.getName(), field.get(field.getName()).toString() );
 				field.setLong(person, Long.parseLong(attributeValue));
-				logger.info(fmt, "after", field.getName(),  field.get(field.getName()));
+				//logger.info(fmt, "after", field.getName(),  field.get(field.getName()));
 			} else if( field.getType().getSimpleName().equals( "Gender") ) {
 				logger.info(fmt, "before", field.getName(), person.getGender() );
 				field.set(person, Gender.getByValue(attributeValue));

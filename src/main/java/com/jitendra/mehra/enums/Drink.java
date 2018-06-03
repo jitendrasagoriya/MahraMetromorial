@@ -5,15 +5,17 @@ import java.util.Map;
 
 public enum Drink {
 	
-	NA(0,"NA"),
-	NO(1,"No"),
-	YES(2,"Yes"),
-	OCCASIONALLY(3,"occasionally");
+	NA(0,"NA","NA"),
+	NO(1,"NO","No"),
+	YES(2,"YES","Yes"),
+	OCCASIONALLY(3,"OCCASIONALLY","occasionally");
 	
 	private int id;
 	
 	private String value;
 	
+	private String desc;
+
 	
 	private static final Map<Integer, Drink> byId = new HashMap<>();
 	private static final Map<String, Drink> byValue = new HashMap<>();
@@ -44,9 +46,10 @@ public enum Drink {
 	 * @param id
 	 * @param value
 	 */
-	private Drink(int id, String value) {
+	private Drink(int id, String value,String desc) {
 		this.id = id;
 		this.value = value;
+		this.desc = desc;
 	}
 
 	/**
