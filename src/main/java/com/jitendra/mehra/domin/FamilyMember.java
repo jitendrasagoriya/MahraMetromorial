@@ -8,15 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.jitendra.mehra.enums.MotherOccupation;
 import com.jitendra.mehra.enums.Relation;
 
-@Entity(name="FAMILYMEMBER")
+@Entity
+@Table(name="FAMILYMEMBER")
 public class FamilyMember implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,14 +27,32 @@ public class FamilyMember implements Serializable {
 	@Column(name="PERSONID", nullable = false)
 	private Long personId;
 	
-	@Column(name="NAME", nullable = false)
+	@Column(name="USERNAME", nullable = false)
+	private String userName;
+	
+	@Column(name="NAME", nullable = true)
 	private String name;
 	
 	@Column(name="RELATION", nullable = false)
 	private Relation relation;
 	
-	@Column(name="DOB", nullable = false)
+	@Column(name="DOB", nullable = true)
 	private Date dob;
+	
+	@Column(name="GOTRA", nullable = true)
+	private String gotra;
+	
+	@Column(name="FAMILYGOTRA", nullable = true)
+	private String familyGotra;
+	
+	@Column(name="OCCUPATION", nullable = true)
+	private MotherOccupation occupation;
+	
+	@Column(name="SALARY", nullable = true)
+	private String salary;
+	
+	@Transient
+	private Boolean isEdit;
 
 	/**
 	 * @return the id
@@ -108,6 +127,90 @@ public class FamilyMember implements Serializable {
 	}
 
 	
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * @return the gotra
+	 */
+	public String getGotra() {
+		return gotra;
+	}
+
+	/**
+	 * @param gotra the gotra to set
+	 */
+	public void setGotra(String gotra) {
+		this.gotra = gotra;
+	}
+
+	/**
+	 * @return the occupation
+	 */
+	public MotherOccupation getOccupation() {
+		return occupation;
+	}
+
+	/**
+	 * @param occupation the occupation to set
+	 */
+	public void setOccupation(MotherOccupation occupation) {
+		this.occupation = occupation;
+	}
+
+	/**
+	 * @return the salary
+	 */
+	public String getSalary() {
+		return salary;
+	}
+
+	/**
+	 * @param salary the salary to set
+	 */
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+	/**
+	 * @return the isEdit
+	 */
+	public Boolean getIsEdit() {
+		return isEdit;
+	}
+
+	/**
+	 * @param isEdit the isEdit to set
+	 */
+	public void setIsEdit(Boolean isEdit) {
+		this.isEdit = isEdit;
+	}
+
+	/**
+	 * @return the familyGotra
+	 */
+	public String getFamilyGotra() {
+		return familyGotra;
+	}
+
+	/**
+	 * @param familyGotra the familyGotra to set
+	 */
+	public void setFamilyGotra(String familyGotra) {
+		this.familyGotra = familyGotra;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -116,10 +219,16 @@ public class FamilyMember implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
+		result = prime * result + ((familyGotra == null) ? 0 : familyGotra.hashCode());
+		result = prime * result + ((gotra == null) ? 0 : gotra.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((isEdit == null) ? 0 : isEdit.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
 		result = prime * result + ((personId == null) ? 0 : personId.hashCode());
 		result = prime * result + ((relation == null) ? 0 : relation.hashCode());
+		result = prime * result + ((salary == null) ? 0 : salary.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 
@@ -140,15 +249,32 @@ public class FamilyMember implements Serializable {
 				return false;
 		} else if (!dob.equals(other.dob))
 			return false;
+		if (familyGotra == null) {
+			if (other.familyGotra != null)
+				return false;
+		} else if (!familyGotra.equals(other.familyGotra))
+			return false;
+		if (gotra == null) {
+			if (other.gotra != null)
+				return false;
+		} else if (!gotra.equals(other.gotra))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (isEdit == null) {
+			if (other.isEdit != null)
+				return false;
+		} else if (!isEdit.equals(other.isEdit))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (occupation != other.occupation)
 			return false;
 		if (personId == null) {
 			if (other.personId != null)
@@ -156,6 +282,16 @@ public class FamilyMember implements Serializable {
 		} else if (!personId.equals(other.personId))
 			return false;
 		if (relation != other.relation)
+			return false;
+		if (salary == null) {
+			if (other.salary != null)
+				return false;
+		} else if (!salary.equals(other.salary))
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
 	}
@@ -165,8 +301,9 @@ public class FamilyMember implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "FamilyMember [id=" + id + ", personId=" + personId + ", name=" + name + ", relation=" + relation
-				+ ", dob=" + dob + "]";
+		return "FamilyMember [id=" + id + ", personId=" + personId + ", userName=" + userName + ", name=" + name
+				+ ", relation=" + relation + ", dob=" + dob + ", gotra=" + gotra + ", familyGotra=" + familyGotra
+				+ ", occupation=" + occupation + ", salary=" + salary + ", isEdit=" + isEdit + "]";
 	}
 	
 	
